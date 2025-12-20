@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Kitten Adoption Guide - Paws a Moment Rescue{% endblock %}
+{% block body_class %}subhero-background{% endblock %}
+
+{% block content %}
+<div class="adoption-page-header">
+    <h1 class="white-text">Kitten Adoption Guide</h1>
+</div>
+
+<section class="purple-curve-section">
+    <div class="purple-scenery">
+        <svg class="purple-curve" viewBox="0 0 100 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="curveShadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity="0.5"/>
+                </filter>
+            </defs>
+            <path d="M0,60 L0,0 Q50,60 100,0 L100,60 Z" fill="#f5f5f5" filter="url(#curveShadow)" />
+        </svg>
+    </div>
+</section>
+
+
+<div class="white-content-box">
+    <p>Welcome to the family! Here is your guide to caring for your new kitten.</p>
+    
+    <section id="preparing-home">
+        <h2>Preparing Your Home</h2>
+        <p>Before your kitten arrives, take some time to kitten-proof your home. This means securing any potential hazards, such as:</p>
+        
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● <strong>Electrical cords:</strong> Tuck them away or cover them to prevent chewing.</div>
+            <div class="custom-bullet-item">● <strong>Toxic substances:</strong> Store cleaning supplies, medications, and chemicals out of reach.</div>
+            <div class="custom-bullet-item">● <strong>Small objects:</strong> Remove anything that could be swallowed, like rubber bands, paper clips, or string.</div>
+            <div class="custom-bullet-item">● <strong>Houseplants:</strong> Identify and remove any plants that are toxic to cats.</div>
+            <div class="custom-bullet-item">● <strong>Unstable furniture:</strong> Secure bookshelves or tall lamps that could be knocked over.</div>
+        </div>
+        <br>
+        
+        <img src="{% static 'img/kittenPicture2.png' %}" alt="Kitten Cartoon Image 2" class="guide-image">
+        
+        <div class="kitten-essentials">
+            <h3>Essentials Checklist:</h3>
+            <table>
+                <thead>
+                    <tr><th>Item</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Food and water bowls</td></tr>
+                    <tr><td>High-quality kitten food (wet and dry)</td></tr>
+                    <tr><td>Litter box and kitten-safe litter</td></tr>
+                    <tr><td>Scratching post or pad</td></tr>
+                    <tr><td>Safe and comfortable bed</td></tr>
+                    <tr><td>Variety of toys</td></tr>
+                    <tr><td>Kitten carrier</td></tr>
+                    <tr><td>Grooming supplies (brush, nail clippers)</td></tr>
+                    <tr><td>First-aid kit for pets</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Create a safe and comfortable space for your kitten where they can retreat and feel secure. This could be a spare room, a quiet corner, or even just a cosy bed in a central location. Make sure they have easy access to their food, water, litter box, and scratching post.</p>
+    </section>
+
+    <section id="first-days">
+        <h2>The First Few Days</h2>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● <strong>Confine them to a small area:</strong> This will help them feel more secure and make it easier for them to find their resources (food, water, litter box).</div>
+            <div class="custom-bullet-item">● <strong>Offer food and water:</strong> Place their bowls nearby and encourage them to eat and drink.</div>
+            <div class="custom-bullet-item">● <strong>Show them the litter box:</strong> Gently place them in the litter box so they know where it is. Don't worry if they don't use it right away.</div>
+            <div class="custom-bullet-item">● <strong>Provide gentle interaction:</strong> Talk to them softly and offer a gentle scratch under the chin if they seem receptive. Avoid forcing interaction.</div>
+            <div class="custom-bullet-item">● <strong>Be patient:</strong> It may take a few days or even weeks for your kitten to fully adjust to their new home. Don't get discouraged if they hide or seem scared. Just continue to provide a safe and loving environment.</div>
+        </div>
+    </section>
+
+    <section id="feeding-kitten">
+        <h2>Feeding Your Kitten</h2>
+        <p>Kittens have different nutritional needs than adult cats. They require a diet that is high in protein and calories to support their rapid growth and development. Choose a kitten food that is specifically formulated for kittens. You can feed your kitten wet food, dry food, or a combination of both.</p>
+        <p>Wet food is more palatable and can help keep your kitten hydrated. Dry food is more convenient and can help keep their teeth clean. Be sure to read the ingredient list and choose a food that is made with high-quality ingredients and contains no artificial colours, flavours, or preservatives.</p>
+        
+        <div class="feeding-guidelines">
+            <h3>Feeding Guidelines:</h3>
+            <div class="custom-bullet-list">
+                <div class="custom-bullet-item">● Always provide fresh, clean water.</div>
+                <div class="custom-bullet-item">● Feed a high-quality kitten food.</div>
+                <div class="custom-bullet-item">● Follow the feeding guidelines on the food packaging.</div>
+                <div class="custom-bullet-item">● Divide their daily food into multiple small meals.</div>
+                <div class="custom-bullet-item">● Avoid overfeeding.</div>
+            </div>
+            <img src="{% static 'img/kittenPicture3.jpg' %}" alt="Kitten Cartoon Image 3" class="guide-image">
+            <h3>Foods to Avoid:</h3>
+            <div class="custom-bullet-list">
+                <div class="custom-bullet-item">● Chocolate</div>
+                <div class="custom-bullet-item">● Onions and garlic</div>
+                <div class="custom-bullet-item">● Grapes and raisins</div>
+                <div class="custom-bullet-item">● Alcohol</div>
+                <div class="custom-bullet-item">● Raw meat or fish</div>
+                <div class="custom-bullet-item">● Dairy products (cats can be lactose intolerant)</div>
+            </div>
+        </div>
+        <p>Consult with your veterinarian for specific feeding recommendations for your kitten, especially if they have any health concerns.</p>
+    </section>
+
+    <section id="litter-training">
+        <h2>Litter Box Training</h2>
+        <p>Litter box training is usually a relatively easy process for kittens. Here are a few tips to help:</p>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● <strong>Choose the right litter box:</strong> Select a litter box that is appropriately sized for your kitten. A low-sided box is often easier for kittens to enter and exit, however high sides can help contain mess.</div>
+            <div class="custom-bullet-item">● <strong>Choose the right litter:</strong> Experiment with different types of litter to see what your kitten prefers. Avoid scented litters, as these can be irritating to some cats.</div>
+            <div class="custom-bullet-item">● <strong>Place the litter box in a quiet, accessible location:</strong> Make sure the litter box is easily accessible to your kitten and is in a quiet area away from their food and water.</div>
+            <div class="custom-bullet-item">● <strong>Show your kitten the litter box:</strong> After meals and naps, gently place your kitten in the litter box. They may naturally start to dig and eliminate.</div>
+            <div class="custom-bullet-item">● <strong>Clean the litter box regularly:</strong> Scoop the litter box at least once a day and completely change the litter once a week.</div>
+            <div class="custom-bullet-item">● <strong>Reward your kitten for using the litter box:</strong> When your kitten uses the litter box, praise them and offer a small treat.</div>
+            <div class="custom-bullet-item">● <strong>Never punish your kitten for accidents:</strong> If your kitten has an accident outside of the litter box, clean it up thoroughly and don't punish them. Punishment can create fear and anxiety, which can worsen the problem.</div>
+        </div>
+    </section>
+
+    <section id="grooming">
+        <h2>Grooming</h2>
+        <p>Regular grooming is important for keeping your kitten healthy and happy. It helps to remove loose fur, prevent mats, and distribute natural oils throughout their coat.</p>
+        <img src="{% static 'img/kittenPicture4.jpg' %}" alt="Kitten Cartoon Image 4" class="guide-image">
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● <strong>Brushing:</strong> Brush your kitten regularly, especially if they have long hair. This will help to remove loose fur and prevent mats.</div>
+            <div class="custom-bullet-item">● <strong>Nail trimming:</strong> Trim your kitten's nails every few weeks to prevent them from scratching furniture or people.</div>
+            <div class="custom-bullet-item">● <strong>Ear cleaning:</strong> Check your kitten's ears regularly for dirt and debris. Clean them with a cotton ball and a veterinarian-approved ear cleaner.</div>
+            <div class="custom-bullet-item">● <strong>Bathing:</strong> Kittens generally don't need to be bathed unless they get very dirty. If you do need to bathe your kitten, use a shampoo that is specifically formulated for cats.</div>
+        </div>
+    </section>
+
+    <section id="socialization-play">
+        <h2>Socialization and Play</h2>
+        <p>Socialization is crucial for kittens to develop into well-adjusted adults. Expose your kitten to a variety of sights, sounds, smells, and people in a positive and controlled manner.</p>
+        <img src="{% static 'img/kittenPicture5.jpg' %}" alt="Kitten Cartoon Image 5" class="guide-image">
+        <h3>Safe Play Tips:</h3>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Supervise playtime.</div>
+            <div class="custom-bullet-item">● Avoid using your hands or feet as toys.</div>
+            <div class="custom-bullet-item">● Choose toys that are safe and durable.</div>
+            <div class="custom-bullet-item">● Rotate toys regularly to keep your kitten interested.</div>
+            <div class="custom-bullet-item">● Provide a variety of toys to stimulate different senses.</div>
+            <div class="custom-bullet-item">● Avoid toys with small parts that could be swallowed.</div>
+        </div>
+        
+        <h3>Recommended Toys:</h3>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● <strong>Wand toys:</strong> These toys allow you to interact with your kitten from a safe distance.</div>
+            <div class="custom-bullet-item">● <strong>Balls:</strong> Kittens love to chase and bat around balls.</div>
+            <div class="custom-bullet-item">● <strong>Stuffed animals:</strong> Some kittens enjoy cuddling with stuffed animals.</div>
+            <div class="custom-bullet-item">● <strong>Scratching posts:</strong> Scratching is a natural behaviour for cats, so provide them with a scratching post to protect your furniture.</div>
+        </div>
+        <p>Schedule regular playtime sessions with your kitten, and make sure to provide plenty of positive reinforcement.</p>
+    </section>
+
+    <section id="health-care">
+        <h2>Health Care</h2>
+        <p>Regular veterinary care is essential for keeping your kitten healthy and preventing disease.</p>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● <strong>Vaccinations:</strong> Kittens need a series of vaccinations to protect them from common feline diseases. Your veterinarian will recommend a vaccination schedule based on your kitten's age and health.</div>
+            <div class="custom-bullet-item">● <strong>Deworming:</strong> Kittens are often born with intestinal parasites. Your veterinarian will recommend a deworming schedule to eliminate these parasites.</div>
+            <div class="custom-bullet-item">● <strong>Flea and tick prevention:</strong> Protect your kitten from fleas and ticks with a veterinarian-approved preventative medication.</div>
+            <div class="custom-bullet-item">● <strong>Desexing:</strong> Your kitten will already be desexed by the time your kitten is adopted. If your kitten is female and the surgery was recent, check the surgical area regularly to ensure it heals without issue.</div>
+            <div class="custom-bullet-item">● <strong>Regular check-ups:</strong> Take your kitten to the veterinarian for regular check-ups to monitor their health and catch any potential problems early.</div>
+        </div>
+        <img src="{% static 'img/kittenPicture6.jpg' %}" alt="Kitten Cartoon Image 6" class="guide-image">
+        <h3>When to Call the Vet:</h3>
+        <p>Call your veterinarian if your kitten exhibits any of the following signs:</p>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Loss of appetite</div>
+            <div class="custom-bullet-item">● Vomiting or diarrhoea</div>
+            <div class="custom-bullet-item">● Lethargy or weakness</div>
+            <div class="custom-bullet-item">● Coughing or sneezing</div>
+            <div class="custom-bullet-item">● Difficulty breathing</div>
+            <div class="custom-bullet-item">● Discharge from the eyes or nose</div>
+            <div class="custom-bullet-item">● Changes in behaviour</div>
+        </div>
+    </section>
+
+    <section id="conclusion">
+        <h2>Conclusion</h2>
+        <p>Bringing a new kitten into your home is an incredibly rewarding experience. By providing them with love, care, and a safe environment, you can help them grow into a happy and healthy companion. Remember to be patient, understanding, and enjoy every moment with your new furry friend!</p>
+        <p>Thank you for choosing to adopt from Paws a moment! We are here to support you and your kitten every step of the way. Contact us with any questions or concerns you may have.</p>
+        
+        <div class="final-image-layout">
+            <img src="{% static 'img/kittenPicture7.png' %}" alt="Kitten Cartoon Image 7" class="final-image logo-image">
+            <img src="{% static 'img/kittenPicture8.png' %}" alt="Kitten Cartoon Image 8" class="final-image cat-image">
+            <div class="flex-break"></div>
+            <img src="{% static 'img/kittenPicture9.jpg' %}" alt="Kitten Cartoon Image 9" class="final-image footprint-image">
+        </div>
+    </section>
+</div>
+{% endblock %}

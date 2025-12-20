@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Paws a Moment Rescue{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    {% block extra_css %}{% endblock %}
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="{% block body_class %}subhero-background{% endblock %}">
+    {% include 'components/header.html' %}
+    
+    <main>
+        {% block page_header_design %}
+            {% include 'components/curve.html' %}
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+    </main>
+    
+    {% include 'components/footer.html' %}
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/pawprints.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+<script>
+    function checkOther(selectElement, otherFieldId) {
+        const otherField = document.getElementById(otherFieldId);
+        if (selectElement.value === 'Other' || selectElement.value === 'OTHER') {
+            otherField.style.display = 'block';
+            otherField.querySelector('input, textarea').required = true;
+        } else {
+            otherField.style.display = 'none';
+            otherField.querySelector('input, textarea').required = false;
+        }
+    }
+</script>
+</html>
+

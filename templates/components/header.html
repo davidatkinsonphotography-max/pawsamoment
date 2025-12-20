@@ -1,0 +1,17 @@
+<!-- Navigation -->
+<nav class="nav">
+    <ul>
+        <li><a href="{% url 'core:home' %}">Home</a></li>
+        <li><a href="{% url 'animals:adoption_list' %}">View Animals</a></li>
+        <li><a href="{% url 'applications:adoption_landing_page' %}">Adopt</a></li>        
+        <li><a href="{% url 'core:donate' %}">Donate</a></li>
+        <li><a href="{% url 'news:news_list' %}">News</a></li>
+        <li><a href="{% url 'core:guides' %}">Guides</a></li>
+        <li><a href="{% url 'applications:foster_info' %}">Foster</a></li>
+        <li><a href="{% url 'core:contact' %}">Contact Us</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'dashboard:dashboard' %}">Admin</a></li>
+        {% endif %}
+    </ul>
+</nav>
+

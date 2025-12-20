@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="header" style="text-align: center; padding: 50px 20px;">
+    <h1>Start Your Adoption Journey</h1>
+    <p>Please select the type of friend you are looking to bring home.</p>
+</div>
+
+<div class="portal-choices" style="display: flex; justify-content: center; gap: 30px; padding-bottom: 50px;">
+    
+    <div class="choice-card" style="text-align: center; border: 1px solid #ddd; padding: 30px; border-radius: 15px; width: 300px;">
+        <div style="font-size: 50px;">🐕</div>
+        <h2>Adopting a Dog</h2>
+        <p>For yard-dwellers and adventure buddies.</p>
+        <a href="{% url 'applications:dog_adoption' %}" class="btn-link" style="display: block; margin-top: 20px;">Dog Application</a>
+    </div>
+
+    <div class="choice-card" style="text-align: center; border: 1px solid #ddd; padding: 30px; border-radius: 15px; width: 300px;">
+        <div style="font-size: 50px;">🐈</div>
+        <h2>Adopting a Cat</h2>
+        <p>For indoor companions and sun-baskers.</p>
+        <a href="{% url 'applications:cat_adoption' %}" class="btn-link" style="display: block; margin-top: 20px;">Cat Application</a>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Central Coast Foster & Adoption - Paws a Moment Rescue{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <img src="{% static 'img/mobilebackgroundwhole.jpg' %}" alt="Central Coast Foster & Adoption" class="mobile-hero-image">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+        <div class="hero-left"> 
+            <div class="hero-logo"></div>
+            <div class="hero-text">
+                <h1>Central Coast Foster & Adoption</h1>
+                <p>Helping pets find their forever homes.</p>
+            </div>
+        </div>
+        <div class="hero-dog"></div>
+    </div>
+</section>
+
+<section class="mission-swoosh" width="100%">
+    <div class="swoosh-container">
+        <!--<svg class="swoosh-top" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 C480,120 960,120 1440,0 L1440,120 L0,120 Z" width=100% fill="#f5f5f5"/>
+        </svg>-->
+        
+        <div class="mission-content">
+            <div class="mission-image">
+                <div class="image-mask">
+                    <img src="{% static 'img/happy-rescue-dog.jpg' %}" alt="A happy dog in a new home">
+                </div>
+            </div>            
+            <div class="mission-text">
+                <h2>Every paw deserves a <span class="highlight">moment</span> of love.</h2>
+                <p>We believe every animal on the Central Coast deserves a safe place to land. From the moment they arrive in our care to the second they meet you, our mission is pure: turning "rescue" into "family."</p>
+                <div class="mission-stats">
+                    <div class="stat-item"><i class="fa-solid fa-heart"></i> <span>500+ Homes Found</span></div>
+                    <div class="stat-item"><i class="fa-solid fa-bone"></i> <span>Locally Operated</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Actions -->
+<section class="main-actions-section">
+    <div class="main-menu-container">
+        <div class="menu-group">
+            <a href="{% url 'animals:adoption_list' %}" class="btn-link main-btn">View Animals</a>
+            <div class="submenu">
+                <a href="{% url 'animals:adoption_list' %}">View All</a>
+                <a href="{% url 'animals:adoption_list' %}?species=Cat">Cats</a>
+                <a href="{% url 'animals:adoption_list' %}?species=Dog">Dogs</a>
+            </div>
+        </div>
+
+        <div class="menu-group">
+            <span class="btn-link main-btn lighter-purple">Submit Application</span>
+            <div class="submenu">
+                <a href="{% url 'applications:cat_adoption' %}">Cat/Kitten</a>
+                <a href="{% url 'applications:dog_adoption' %}">Dog/Puppy</a>
+                <a href="{% url 'applications:foster_application' %}">Foster</a>
+            </div>
+        </div>
+
+        <div class="menu-group">
+            <a href="{% url 'core:donate' %}" class="btn-link main-btn">Donate</a>
+        </div>
+
+        <div class="menu-group">
+            <a href="{% url 'news:news_list' %}" class="btn-link main-btn lighter-purple">News & Events</a>
+        </div>
+
+        <div class="menu-group">
+            <a href="{% url 'core:guides' %}" class="btn-link main-btn">Adoption Guides</a>
+            <div class="submenu">
+                <a href="{% url 'core:guides' %}">Puppy</a>
+                <a href="{% url 'core:guides' %}">Adult Dog</a>
+                <a href="{% url 'core:guides' %}">Kitten</a>
+                <a href="{% url 'core:guides' %}">Adult Cat</a>
+            </div>
+        </div>
+
+        <div class="menu-group">
+            <a href="{% url 'core:contact' %}" class="btn-link main-btn lighter-purple">Contact Us</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

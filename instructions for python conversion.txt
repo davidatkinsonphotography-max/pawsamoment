@@ -1,0 +1,329 @@
+I have created a pets adoption service website as static pages to demonstrate how it would look and potentially function, but now it is time to make it smart with back end functionality so we can maintain the site with admin logins.
+
+I want to be able to accept applications for adoption, accept applications for fostering, accept message requests on the contact us page and redirect the message to our email address, I want to create a profile for an animal, edit the profile, archive it, and delete it.  
+
+In the adoptionlist I would like to activate the filter functionality, and add a sex filter, plus also show the sex on the preview of the animal.
+
+I will need a superadmin and regular admin access so we can access back end functionality.  
+I will also need the ability to export CSV files for adoption applications, foster applications, contact messages, list of animals, list of news articles, and anything else you can identify.  I would also like an admin page with stats about the page, how many animals adopted, how many site visits, what animals have how many views, esc
+
+I would like all pictures of animals to be square, so if the image is not square, I want to give the uploader the option of zooming and cropping (and choose the midpoint), or to put bars top and bottom or left and right with the colour #f5f5f5.
+
+
+You will see on each webpage there is a header menu, a footer, and a script to allow for paw prints to randomly appear on the screen.  I would like them to be taken away from the HTML pages and put them into one script/py so I can edit it once for global change.
+
+
+
+Here is a CSV of what I have so far.
+
+Current folder,filename,SLUG,Comments,columns,columns,columns,columns,columns,columns,columns,columns,columns,columns,columns,columns,columns,columns,columns,columns,columns,columns,columns,columns,,
+home folder,adoptionlist.html,A table of all animals available for adoption,Interactive page (Animal profiles),primaryimage,animalname,slug,species,breed,sex,Adoption fee,location,status,dateentered,,,,,,,,,,,,
+home folder,dogguide.html,A guide for adopting adult dogs,Static page with PDF download,pdf_link (pawsamoment-adoption-guide-dog.pdf),,,,,,,,,,,,,,,,,,,,,
+home folder,catguide.html,A guide for adopting adult cats,Static page with PDF download,pdf_link (pawsamoment-adoption-guide-cat.pdf),,,,,,,,,,,,,,,,,,,,,
+home folder,puppyguide.html,A guide for adopting a puppy,Static page with PDF download,pdf_link (pawsamoment-adoption-guide-puppy.pdf),,,,,,,,,,,,,,,,,,,,,
+home folder,kittenguide.html,A guide for adopting a kitten,Static page with PDF download,pdf_link (pawsamoment-adoption-guide-kitten.pdf),,,,,,,,,,,,,,,,,,,,,
+static/img/,placeholder.png,,Default image fallback,,,,,,,,,,,,,,,,,,,,,,
+static/img/,placeholderbw.png,,Default image fallback,,,,,,,,,,,,,,,,,,,,,,
+home folder,styles.css,,Global CSS,,,,,,,,,,,,,,,,,,,,,,
+home folder,animaldetail.html,Specific details about an animal available for adoption,Individual details (Gallery Model),primaryimage,gallery_images (1 to N),animalname,slug,species,breed,DOB,Approximate,Size,Sex,Weight (kg),Adoption fee,Location,Status,Good with kids,Special needs,Microchipped,Vaccinated,Desexed,dateentered,,
+home folder,contactus.html,How to get in contact with us,Email relay only,contact_name,contact_email,contact_message,,,,,,,,,,,,,,,,,,,
+home folder,donate.html,Ways to donate,Stripe/Paypal Integration,Generate Tax Invoice (ABN),,,,,,,,,,,,,,,,,,,,,
+home folder,news.html,Upcoming events, success stories, and appeals,News and stories page,Newsimage,Newscategory,Newstitle,slug,Newscontent,Newsexpiry,dateentered,,,,,,,,,,,,,,,
+home folder,application.html,adoption application form,Adoption Form (Inheritance),BaseApplication fields,Species target,Homestatus,Hoursalone,Currentpet_JSON,Yard_JSON,Declaration,,,,,,,,,,,,,,,
+home folder,fosterapplication.html,foster application form,Foster Form (Inheritance),BaseApplication fields,Duration,Startdate,Workschedule,Medical,Children,Yard_Photos,Cert_Photos,Commitment,,,,,,,,,,,,,
+home folder,static/img/,,Container for all icons/logos/buttons,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,
+columnname,primaryimage,animalname,slug,species,breed,DOB,Approximated DOB,Size,Sex,Weight (kg),Adoption fee,Location,Status,Good with kids,Special needs,Microchipped,Vaccinated,Desexed,dateentered,,,,,,
+inputtype,Image,Text,Slugify,Dropdown,Text,date,Radio,Dropdown,Dropdown,Decimal,Whole Number,Text,Dropdown,Radio,Radio,Radio,Radio,Radio,Auto-timestamp,,,,,,
+selections,,,,Dog,,,Yes/No,Small,Male,,,,Available Now,Yes/No,Yes/No,Yes/No,Yes/No,Yes/No,,,,,,,
+selections,,,,Cat,,,,Medium,Female,,,,Available Soon,,,,,,,,,,,,
+selections,,,,Other,,,,Large,,,,,Pending Adoption,,,,,,,,,,,,
+selections,,,,,,,,XLarge,,,,,Adopted,,,,,,,,,,,,
+selections,,,,,,,,,,,,,Not Available,,,,,,,,,,,,
+
+static/img/,mobiledonateidle.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,mobileguideidle.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,paypal.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,acnc.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,kittenidle.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,catidle.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,puppyidle.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,herologo.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,dogidle.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,desktopviewpetsidle.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,desktopdonatehover.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,kittenhover.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,cathover.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,desktopnewshover.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,puppyhover.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,desktopguidehover.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,desktopviewpetshover.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,doghover.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,mobilebackgroundwhole.jpg,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,herodog.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture9.jpg,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,dog2.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,dog3.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,dog1.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,dog6.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,dog5.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,cat6.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,dog7.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture7.jpg,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,puppy2.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,cat2.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,dog4.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,puppy5.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,cat4.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,cat3.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,cat7.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,cat1.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,puppy3.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,puppy6.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,puppy1.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,cat5.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,puppy4.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,puppy7.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,kittenidle.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,dog9.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,puppy9.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,cat9.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture7.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture8.jpg,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture2.jpg,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture2.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture9.jpg,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture6.jpg,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture7.jpg,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture8.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture1.jpg,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture3.jpg,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture4.jpg,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture5.jpg,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,Picture7.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,samplecat.jpg,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,mobileviewpetsidle.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,mobilenewsidle.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,mobiledonatehover.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,mobileviewpetshover.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,mobileguidehover.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,mobilenewshover.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,PAMlogowhite.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,desktopdonateidle.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,desktopnewsidle.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,PAMlogo.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,desktopguideidle.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,paw1.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,paw2.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,paw3.png,,,,,,,,,,,,,,,,,,,,,,,
+static/img/,paw4.png,,,,,,,,,,,,,,,,,,,,,,,
+
+
+
+
+
+from django.db import models
+from django.utils.text import slugify
+
+class AnimalProfile(models.Model):
+    STATUS_CHOICES = [
+        ('AVAILABLE', 'Available Now'),
+        ('SOON', 'Available Soon'),
+        ('PENDING', 'Pending Adoption'),
+        ('ADOPTED', 'Adopted'),
+    ]
+    
+    animal_name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True, blank=True)
+    species = models.CharField(max_length=50) # Dog, Cat, etc.
+    breed = models.CharField(max_length=100)
+    sex = models.CharField(max_length=10)
+    adoption_fee = models.DecimalField(max_digits=10, decimal_places=2)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='AVAILABLE')
+    date_entered = models.DateTimeField(auto_now_add=True)
+    primary_image = models.ImageField(upload_to='animal_photos/')
+    description = models.TextField()
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.animal_name)
+        super().save(*args, **kwargs)
+
+class AnimalImage(models.Model):
+    """The Gallery Model for extra photos"""
+    animal = models.ForeignKey(AnimalProfile, related_name='gallery', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='animal_photos/gallery/')
+
+class BaseApplication(models.Model):
+    """Shared fields for everyone"""
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    mobile = models.CharField(max_length=20)
+    date_submitted = models.DateTimeField(auto_now_add=True)
+
+class AdoptionApplication(BaseApplication):
+    """Specific to Adoption"""
+    specific_pet = models.CharField(max_length=100)
+    home_status = models.CharField(max_length=50) # Own/Rent
+    # Add your other adoption-specific CSV columns here
+
+class FosterApplication(BaseApplication):
+    """Specific to Fostering"""
+    foster_duration = models.CharField(max_length=100)
+    yard_photos = models.ImageField(upload_to='foster_checks/')
+    # Add your other foster-specific CSV columns here
+
+
+
+
+
+Project Overview
+
+Migrate the static HTML/CSS rescue site into a Django-powered web application. The system will support:
+
+    Animal profile management (CRUD + archive)
+
+    Adoption and foster applications
+
+    Contact form with email relay
+
+    News/story publishing with scheduling
+
+    Administrative dashboards with stats
+
+    CSV export of key datasets
+
+Authentication & Roles
+
+    Admins: Use Django’s default admin system.
+
+        Regular Admins: Can manage animal profiles and news articles.
+
+        Superadmins: Same as admins, plus ability to delete other admin accounts.
+
+    Adopters/Fosterers: No login required to submit applications.
+
+Application Workflow
+
+    Applications trigger email notifications to pawsamomentandrescue@gmail.com.
+
+    Confirmation emails sent to adopters/fosterers upon submission.
+
+    Applications are not editable by users after submission.
+
+    Applications stored in DB for reporting/export.
+
+Animal Profile Management
+
+    CRUD operations: Create, Edit, Archive (soft delete), Delete (permanent).
+
+    Archived animals remain in DB but hidden from public listings.
+
+    Adoption status updated manually by admins.
+
+Filtering & Search
+
+    Active filters:
+
+        Name/Description (text search)
+
+        Species (multi-select dropdown)
+
+        Size (multi-select dropdown)
+
+        Sex (multi-select dropdown)
+
+    Implementation: Filters should be server-side (Django queries) for scalability, security, and consistency.
+
+Admin Dashboard
+
+    Key statistics:
+
+        Adoptions per month
+
+        Foster placements
+
+        Site visits
+
+        Animal profile views
+
+    Tracking: Use Django middleware + database logging for site visits/views. (Google Analytics optional later.)
+
+CSV Export
+
+    Exports downloadable from admin panel.
+
+    Export all records (no filter restrictions).
+
+    Supported exports:
+
+        Adoption applications
+
+        Foster applications
+
+        Contact messages
+
+        Animal profiles
+
+        News articles
+
+Image Handling
+
+    Uploads limited to 1000x1000 pixels, JPG format to conserve storage.
+
+    Cropping handled in-browser (JavaScript) for user experience, with server-side validation/resizing using Python/Pillow.
+
+    Options for cropping or adding bars (#f5f5f5 background).
+
+News/Stories
+
+    Expired news auto-hidden after newsexpiry.
+
+    Admins can schedule posts for future publication.
+
+Suggested Additions
+
+    Email Integration: Configure SMTP or third-party service (e.g., SendGrid) for notifications and contact form relay.
+
+    Payment Integration: Plan for Stripe/PayPal integration; donations logged in DB.
+
+    Audit Logs: Track admin actions (create/edit/delete) for accountability.
+
+    Accessibility: Ensure paw prints and image cropping do not interfere with screen readers.
+
+    Scalability: Consider Docker setup and deployment options (Heroku, AWS, etc.).
+
+Technical Requirements
+
+    Language: Python 3.10+
+
+    Framework: Django 4.2+
+
+    Database: PostgreSQL recommended for scalability.
+
+    Slug System: Required for Animals and News (/animals/max-labrador/).
+
+    Folder Structure:
+
+        /static/ → UI assets (logos, paw prints)
+
+        /media/ → User uploads (animal photos, yard photos)
+
+        /templates/ → HTML templates
+
+Next Steps
+
+    Set up Django project and apps (animals, applications, news, dashboard).
+
+    Implement models and migrations.
+
+    Configure email backend (SMTP/SendGrid).
+
+    Build admin dashboard with stats.
+
+    Add CSV export functionality.
+
+    Integrate image handling workflow.
+
+    Prepare deployment strategy (Docker/Heroku/AWS).

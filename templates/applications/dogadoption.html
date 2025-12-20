@@ -1,0 +1,619 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dog Adoption Application - Paws a Moment{% endblock %}
+
+{% block extra_head %}
+{% block extra_css %}
+<style>
+    .other-field-div {
+        display: none;
+        margin-top: 10px;
+        padding: 10px;
+        border-left: 3px solid #6A5ACD;
+        background: #f9f9f9;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+    }
+    .app-form input[type="text"],
+    .app-form input[type="email"],
+    .app-form input[type="tel"],
+    .app-form input[type="number"],
+    .app-form textarea,
+    .app-form select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+        box-sizing: border-box;
+    }
+    .section-header {
+        margin-top: 40px;
+        color: #483D8B;
+        border-bottom: 2px solid #6A5ACD;
+        padding-bottom: 5px;
+        margin-bottom: 20px;
+    }
+</style>
+<script>
+function checkOther(selectElement, divId) {
+    const div = document.getElementById(divId);
+    if (selectElement.value === 'Other') {
+        div.style.display = 'block';
+    } else {
+        div.style.display = 'none';
+    }
+}
+</script>
+{% endblock %}
+{% endblock %}
+{% block content %}
+<div class="adoption-page-header">
+    <h1 class="white-text">Dog Adoption Questionnaire</h1>
+</div>
+
+<div class="white-content-box adoption-page-wrapper">
+    <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+        
+        <div style="flex: 2 1 60%;">
+            <div style="background: #f0edff; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.95em; line-height: 1.4;">
+                <p><strong>So that we can find the most suitable homes for our Fosters</strong> we need to know more about you and why you think this particular dog would be the perfect addition to your family and home. Once the Questionnaire is complete it will be forwarded onto the individual carer and they will be in contact with those who they feel most suitable. A meet and greet can then be discussed with the carer.</p>
+                <p><strong>YOU MUST BE OVER THE AGE OF 18YRS TO ADOPT.</strong></p>
+                <p style="font-size: 0.9em; margin-top: 10px;">Your personal details will not be shared with any other organisation or person (other than Paws a Moment & Rescue volunteers).</p>
+            </div>
+
+            <form class="app-form" method="post" action="{% url 'applications:dog_adoption' %}">
+                {% csrf_token %}
+                
+                <h3 class="section-header">1. Interest & Experience</h3>
+                
+                <div class="form-group">
+                    <label>Are you 18yrs or older? <span style="color: red;">*</span></label>
+                    <select name="age_confirm" required>
+                        <option value="">-- Select --</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Name/Breed of Dog/Puppy you are interested in <span style="color: red;">*</span>:</label>
+                    <input type="text" name="pet_name" required placeholder="e.g. Buddy / Kelpie Mix">
+                </div>
+
+                <div class="form-group">
+                    <label>Ideally looking for the following size dog when fully grown:</label>
+                    <select name="dog_size_pref" onchange="checkOther(this, 'size_other_div')">
+                        <option value="">-- Select --</option>
+                        <option value="Small/Toy">Small/Toy</option>
+                        <option value="Medium - Staffy/Kelpie size">Medium - Staffy/Kelpie size</option>
+                        <option value="Large - Labrador/German Shepherd size">Large - Labrador/German Shepherd size</option>
+                        <option value="Extra Large - Bull Arab/Great Dane size">Extra Large - Bull Arab/Great Dane size</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="size_other_div" class="other-field-div">
+                        <label>Please specify size preference:</label>
+                        <input type="text" name="size_other">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you have experience with this particular breed? If so provide details <span style="color: red;">*</span>:</label>
+                    <textarea name="breed_experience" required rows="4" placeholder="Have you owned this breed before? Tell us about your experience."></textarea>
+                </div>
+
+                <h3 class="section-header">2. Personal Details</h3>
+
+                <div class="form-group">
+                    <label>First Name <span style="color: red;">*</span>:</label>
+                    <input type="text" name="first_name" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Last Name <span style="color: red;">*</span>:</label>
+                    <input type="text" name="last_name" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Street address 1 <span style="color: red;">*</span>:</label>
+                    <input type="text" name="address_street" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Street address 2:</label>
+                    <input type="text" name="address_street2" />
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 2;">
+                        <label>Suburb <span style="color: red;">*</span>:</label>
+                        <input type="text" name="address_city" required />
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>State <span style="color: red;">*</span>:</label>
+                        <input type="text" name="address_state" required />
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Postcode <span style="color: red;">*</span>:</label>
+                        <input type="text" name="address_zip" required />
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label for="home_phone">Home Phone:</label>
+                        <input type="tel" id="home_phone" name="home_phone" />
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="mobile">Mobile Phone <span style="color: red;">*</span>:</label>
+                        <input type="tel" id="mobile" name="mobile" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address <span style="color: red;">*</span>:</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Age <span style="color: red;">*</span>:</label>
+                    <input type="number" id="age" name="age" min="18" required />
+                </div>
+
+                <h3 class="section-header">3. Your Home and Family</h3>
+
+                <div class="form-group">
+                    <label for="household_members">Names and ages of everyone living in your house including children and housemates:</label>
+                    <textarea id="household_members" name="household_members" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you rent or own your own home? <span style="color: red;">*</span></label>
+                    <select name="home_status" required onchange="checkOther(this, 'home_other_div')">
+                        <option value="">-- Select --</option>
+                        <option value="Own (proof of ownership eg. rates notice to be sighted)">Own (proof of ownership eg. rates notice to be sighted)</option>
+                        <option value="Rent (letter/agreement from landlord/Real Estate)">Rent (letter/agreement from landlord/Real Estate)</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="home_other_div" class="other-field-div">
+                        <label>Please specify situation:</label>
+                        <input type="text" name="home_other">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>What type of property will the animal be living at? <span style="color: red;">*</span></label>
+                    <select name="property_type" required onchange="checkOther(this, 'property_other_div')">
+                        <option value="">-- Select --</option>
+                        <option value="House">House</option>
+                        <option value="Duplex">Duplex</option>
+                        <option value="Villa">Villa</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Share Accomodation">Share Accomodation</option>
+                        <option value="Acreage/Farm">Acreage/Farm</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="property_other_div" class="other-field-div">
+                        <label>Please specify property type:</label>
+                        <input type="text" name="property_other">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>How long have you lived in your current home?</label>
+                    <select name="residence_length">
+                        <option value="">-- Select --</option>
+                        <option value="Less than 12 months">Less than 12 months</option>
+                        <option value="1-3 years">1-3 years</option>
+                        <option value="4 years +">4 years +</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>What size is your yard? <span style="color: red;">*</span></label>
+                    <select name="yard_size" required onchange="checkOther(this, 'yard_other_div')">
+                        <option value="">-- Select --</option>
+                        <option value="Courtyard">Courtyard</option>
+                        <option value="Average">Average</option>
+                        <option value="Large">Large</option>
+                        <option value="Acreage">Acreage</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="yard_other_div" class="other-field-div">
+                        <label>Please specify yard size:</label>
+                        <input type="text" name="yard_other">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Is your yard fully fenced and secure? <span style="color: red;">*</span></label>
+                    <select name="fencing_secure" required onchange="checkOther(this, 'fencing_other_div')">
+                        <option value="">-- Select --</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="fencing_other_div" class="other-field-div">
+                        <label>Please specify fencing status:</label>
+                        <input type="text" name="fencing_other">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Fence height and material? <span style="color: red;">*</span></label>
+                    <input type="text" name="fence_details" required placeholder="e.g. 6ft Colourbond" />
+                </div>
+
+                <div class="form-group">
+                    <label>Are you happy for a Representative of Paws a Moment & Rescue to come out and do a home and yard check?</label>
+                    <select name="home_check_ok">
+                        <option value="">-- Select --</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="other_pets_list">Please list any other pets you currently have and their ages:</label>
+                    <textarea id="other_pets_list" name="other_pets_list" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>If you have other animals are they desexed?</label>
+                    <select name="other_animals_desexed">
+                        <option value="">-- Select --</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="Some">Some</option>
+                        <option value="N/A">N/A</option>
+                    </select>
+                </div>
+
+                <h3 class="section-header">4. Lifestyle and Work Commitments</h3>
+
+                <div class="form-group">
+                    <label>Work commitments? <span style="color: red;">*</span></label>
+                    <select name="work_status" required onchange="checkOther(this, 'work_other_div')">
+                        <option value="">-- Select --</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Work from home">Work from home</option>
+                        <option value="Not currently working">Not currently working</option>
+                        <option value="Retired">Retired</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="work_other_div" class="other-field-div">
+                        <label>Please specify work commitments:</label>
+                        <input type="text" name="work_other">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>How long have you been employed in your current job?</label>
+                    <select name="employment_length">
+                        <option value="">-- Select --</option>
+                        <option value="Less than 12 months">Less than 12 months</option>
+                        <option value="1-4 years">1-4 years</option>
+                        <option value="5 years +">5 years +</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="work_location">Where will the dog be while you're at work?</label>
+                    <input type="text" id="work_location" name="work_location" placeholder="e.g. Inside, Backyard, Doggie Daycare" />
+                </div>
+
+                <div class="form-group">
+                    <label>How many hours per day would your dog be home alone? <span style="color: red;">*</span></label>
+                    <select name="hours_alone" required>
+                        <option value="">-- Select --</option>
+                        <option value="0-2h">0-2h</option>
+                        <option value="3 to 5h">3 to 5h</option>
+                        <option value="6 - 8h">6 - 8h</option>
+                        <option value="9h+">9h+</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>What is the main reason for welcoming a new dog into the home/family?</label>
+                    <select name="adoption_reason" onchange="checkOther(this, 'reason_other_div')">
+                        <option value="">-- Select --</option>
+                        <option value="Companionship">Companionship</option>
+                        <option value="Protection">Protection</option>
+                        <option value="Birthday Present">Birthday Present</option>
+                        <option value="Now have a suitable yard">Now have a suitable yard</option>
+                        <option value="This one is cute">This one is cute</option>
+                        <option value="Been waiting for the right one to come along">Been waiting for the right one to come along</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="reason_other_div" class="other-field-div">
+                        <label>Please specify reason:</label>
+                        <input type="text" name="reason_other">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Does anyone in the home suffer from allergies?</label>
+                    <select name="allergies">
+                        <option value="">-- Select --</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="Unsure">Unsure</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you allow your pets to live both inside and outside as part of the family?</label>
+                    <select name="inside_outside">
+                        <option value="">-- Select --</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="Will consider allowing them inside">Will consider allowing them inside</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you consider yourself an indoors or outdoors person?</label>
+                    <select name="personality_type">
+                        <option value="">-- Select --</option>
+                        <option value="Indoor">Indoor</option>
+                        <option value="Outdoor">Outdoor</option>
+                        <option value="Enjoy both">Enjoy both</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="main_caregiver">Who will be the main caregiver of the animal?</label>
+                    <input type="text" id="main_caregiver" name="main_caregiver" />
+                </div>
+
+                <div class="form-group">
+                    <label for="food_plan">What do you plan on feeding your new pet?</label>
+                    <select id="food_plan" name="food_plan" onchange="checkOther(this, 'food_other_div')">
+                        <option value="">-- Select --</option>
+                        <option value="High Quality Dry food">High Quality Dry food</option>
+                        <option value="Raw">Raw</option>
+                        <option value="Tin food">Tin food</option>
+                        <option value="Table scraps">Table scraps</option>
+                        <option value="Unsure at this stage">Unsure at this stage</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="food_other_div" class="other-field-div">
+                        <label>Please specify food plan:</label>
+                        <input type="text" name="food_other">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you plan on Training your new pup/dog?</label>
+                    <select name="training_plan" onchange="checkOther(this, 'training_other_div')">
+                        <option value="">-- Select --</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="Maybe">Maybe</option>
+                        <option value="Hoping to find one already trained">Hoping to find one already trained</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="training_other_div" class="other-field-div">
+                        <label>Please specify training plan:</label>
+                        <input type="text" name="training_other">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>How many times each week would you be walking your new dog?</label>
+                    <select name="walking_frequency">
+                        <option value="">-- Select --</option>
+                        <option value="Every day">Every day</option>
+                        <option value="At least 3-4 times">At least 3-4 times</option>
+                        <option value="Once a week">Once a week</option>
+                        <option value="Whenever I get time">Whenever I get time</option>
+                        <option value="Never/infrequent">Never/Infrequent</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>How much time are you planning on spending with your new dog on a daily basis?</label>
+                    <select name="daily_time">
+                        <option value="">-- Select --</option>
+                        <option value="Every waking moment">Every waking moment</option>
+                        <option value="Before and after work">Before and after work</option>
+                        <option value="At least 3-4 hours each day">At least 3-4 hours each day</option>
+                        <option value="Less than 2 hours">Less than 2 hours</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Have you ever trained a dog in basic commands...eg. 'sit' 'stay' 'drop' recall or leash training?</label>
+                    <select name="command_experience">
+                        <option value="">-- Select --</option>
+                        <option value="Yes very experienced">Yes very experienced</option>
+                        <option value="No experience but willing to learn">No experience but willing to learn</option>
+                        <option value="No training experience">No training experience</option>
+                        <option value="Basic training experience">Basic training experience</option>
+                        <option value="Don't feel there is a necessity for training">Don't feel there is a necessity for training</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Where will your new dog/pup sleep? <span style="color: red;">*</span></label>
+                    <input type="text" name="sleeping_location" required placeholder="e.g. Inside on a dog bed / In the laundry">
+                </div>
+
+                <div class="form-group">
+                    <label>Have you ever toilet trained a pup/dog?</label>
+                    <select name="toilet_training_experience">
+                        <option value="">-- Select --</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="entertainment_plan">How do you plan on keeping your dog/pup entertained while he/she is home on their own?</label>
+                    <textarea id="entertainment_plan" name="entertainment_plan" rows="3" placeholder="e.g. Toys/Kongs/Bones, Doggie Daycare, Mental stimulation games"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="adjustment_plan">How do you plan to help the dog/pup adjust to its new home?</label>
+                    <textarea id="adjustment_plan" name="adjustment_plan" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you think its important to worm/flea treat/vaccinate your pet regularly?</label>
+                    <select name="vet_care_importance">
+                        <option value="">-- Select --</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="Unsure">Unsure</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you understand the importance of teaching children to be respectful and considerate of animals in your care?</label>
+                    <select name="children_education">
+                        <option value="">-- Select --</option>
+                        <option value="Yes absolutely!">Yes absolutely!</option>
+                        <option value="They can learn the hard way">They can learn the hard way</option>
+                        <option value="Unsure">Unsure</option>
+                    </select>
+                </div>
+
+                <h3 class="section-header">5. Commitment to Your New Pet</h3>
+
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #ffc107;">
+                    <p><strong>Your pet will never wake up one day and decide they don't love you anymore.....pets are Family. Family is Forever.</strong></p>
+                </div>
+
+                <div class="form-group">
+                    <label>Have you ever needed to rehome a pet previously?</label>
+                    <select name="rehomed_before" onchange="checkOther(this, 'rehome_other_div')">
+                        <option value="">-- Select --</option>
+                        <option value="No">No</option>
+                        <option value="Yes - Moving house">Yes - Moving house</option>
+                        <option value="Yes - New baby">Yes - New baby</option>
+                        <option value="Yes - Animal became aggressive">Yes - Animal became aggressive</option>
+                        <option value="Yes - Health reasons">Yes - Health reasons</option>
+                        <option value="Yes - No time for the animal due to work commitments">Yes - No time for the animal due to work commitments</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="rehome_other_div" class="other-field-div">
+                        <label>If yes, why did you need to rehome?</label>
+                        <textarea name="rehome_history" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Is everyone in the household on board with Adopting a new pet?</label>
+                    <select name="household_agreement">
+                        <option value="">-- Select --</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="Haven't spoken to my partner yet but should be ok">Haven't spoken to my partner yet but should be ok</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Where did you hear about Paws a Moment & Rescue?</label>
+                    <select name="heard_about" onchange="checkOther(this, 'heard_other_div')">
+                        <option value="">-- Select --</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Website">Website</option>
+                        <option value="Friend/Family">Friend/Family</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="heard_other_div" class="other-field-div">
+                        <label>Please specify:</label>
+                        <input type="text" name="heard_other">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Have you ever considered Fostering?</label>
+                    <select name="considered_fostering">
+                        <option value="">-- Select --</option>
+                        <option value="Yes - would love some more information">Yes - would love some more information</option>
+                        <option value="No - Not interested">No - Not interested</option>
+                        <option value="Not now, Perhaps in the future">Not now, Perhaps in the future</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reference_details">Please provide reference details from someone who has known you personally for at least 12 months (Name & Contact Number):</label>
+                    <textarea id="reference_details" name="reference_details" rows="2"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>When are you ready to adopt?</label>
+                    <select name="readiness" onchange="checkOther(this, 'readiness_other_div')">
+                        <option value="">-- Select --</option>
+                        <option value="Now">Now</option>
+                        <option value="2 weeks">2 weeks</option>
+                        <option value="1 month">1 month</option>
+                        <option value="3 months">3 months</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div id="readiness_other_div" class="other-field-div">
+                        <label>Please specify timeframe:</label>
+                        <input type="text" name="readiness_other">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="additional_info">If there is any other information you would like to add please do so here:</label>
+                    <textarea id="additional_info" name="additional_info" rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="btn-link" style="width: 100%; padding: 15px 30px; margin-top: 20px;">Submit Dog Application</button>
+            </form>
+        </div>
+
+        <div style="flex: 1 1 30%;">
+            <div class="sidebar-box" style="background: #f9f9f9; padding: 20px; border-radius: 10px; border-left: 5px solid #483D8B;">
+                <h3>The Doggy Process</h3>
+                <ul style="padding-left: 20px; font-size: 0.9em; line-height: 1.6;">
+                    <li><strong>Review:</strong> Coordinators check fencing and lifestyle match.</li>
+                    <li><strong>Contact:</strong> Successful applicants called within 5-7 days.</li>
+                    <li><strong>Meet:</strong> A meet and greet is arranged with the foster carer.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+function checkOther(selectElement, divId) {
+    const div = document.getElementById(divId);
+    if (!div) return;
+
+    if (selectElement.value === 'Other') {
+        div.style.display = 'block';
+    } else {
+        div.style.display = 'none';
+    }
+}
+
+// This runs as soon as the page loads to check existing selections
+document.addEventListener('DOMContentLoaded', function() {
+    const allSelects = document.querySelectorAll('select[onchange*="checkOther"]');
+    allSelects.forEach(select => {
+        // Find the div ID mentioned in the onchange attribute
+        const match = select.getAttribute('onchange').match(/'([^']+)'/);
+        if (match && match[1]) {
+            checkOther(select, match[1]);
+        }
+    });
+});
+</script>
+{% endblock %}

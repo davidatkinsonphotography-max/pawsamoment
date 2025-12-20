@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Donate - Paws a Moment Rescue{% endblock %}
+{% block body_class %}subhero-background{% endblock %}
+
+{% block content %}
+<div class="adoption-page-header">
+    <h1 class="white-text">Donate</h1>
+</div>
+
+<section class="purple-curve-section">
+    <div class="purple-scenery">
+        <svg class="purple-curve" viewBox="0 0 100 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="curveShadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity="0.5"/>
+                </filter>
+            </defs>
+            <path
+                d="M0,60 L0,0 Q50,60 100,0 L100,60 Z"
+                fill="#f5f5f5"
+                filter="url(#curveShadow)"
+            />
+        </svg>
+    </div>
+</section>
+
+<div class="white-content-box adoption-page-wrapper">
+    
+    <h2>Make a Direct Impact on Lives in Need</h2>
+
+    <p>Over the past **15 years**, Paws a Moment Rescue has proudly rehomed **over 17,000 dogs and cats**, giving each of them a second chance at life and love. Our mission is fuelled by a dedicated network of volunteers, foster carers, and donors who share a passion for animal welfare. **Your donation will help us continue our vital work and save lives.**</p>
+    
+    <div style="text-align: center; margin-top: 40px; margin-bottom: 60px;">
+        <a href="#payment-options" class="btn" style="padding: 15px 30px; font-size: 1.2em;">Give Now</a>
+    </div>
+
+    <hr>
+    
+    <h3>Transparency in Action: Every Penny Counts</h3>
+    <p>
+        <strong>100% of your public donation goes directly to animals in need.</strong> Paws a Moment Rescue is a dedicated group of community members making a difference to abandoned, neglected, and unwanted dogs and cats of the Hunter Region. Every penny goes toward essential expenses:
+    </p>
+    <p>
+        Feeding, housing, life-saving vet care, rehabilitation, transport, and adoption support.
+    </p>
+
+    <div style="margin-top: 30px;">
+        <h4>Where Your Donation Goes:</h4>
+        <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 10px;"><strong>$25:</strong> Provides a week's supply of specialised food for a sick kitten.</li>
+            <li style="margin-bottom: 10px;"><strong>$50:</strong> Covers vaccinations and microchipping for one adopted pet.</li>
+            <li style="margin-bottom: 10px;"><strong>$150:</strong> Funds essential vet checks and initial flea/worm treatments.</li>
+            <li style="margin-bottom: 10px;"><strong>$500:</strong> Contributes to a major surgery or long-term rehabilitation for a pet with complex needs.</li>
+        </ul>
+    </div>
+    
+    <hr id="payment-options">
+
+    <h2>Payment Options</h2>
+
+    <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+        
+
+
+        <div style="flex: 1 1 350px;">
+            <h3>Donate via Bank Account</h3>
+            <p>If you prefer to donate directly to our working donation account, the details are below:</p>
+            <div style="background: #eee; padding: 15px; border-radius: 5px; font-family: monospace;" font-size: 1rem">
+                <p style="margin: 0;"><strong>Account Name:</strong> Paws a Moment Rescue</p>
+                <p style="margin: 5px 0 0 0;"><strong>BSB:</strong> 032 527</p>
+                <p style="margin: 5px 0 0 0;"><strong>Account Number:</strong> 264068</p>
+            </div>
+        </div>
+    <!--    <div style="flex: 1 1 350px;">
+            <h3>Donate via PayPal</h3>
+            <p>A fast, secure, and easy way to support us instantly.</p>
+        <img 
+            src="static/img/paypal.png" 
+            alt="paypal logo" 
+            style="width: 400px; height: auto;" 
+            width="400" 
+            height="400"
+        />        </div>-->
+    </div>
+    
+    <hr>
+
+    <h3>Other Ways to Give</h3>
+    <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+        <div style="flex: 1 1 350px;">
+            <h4>In-Kind Donations</h4>
+            <p>New or gently used blankets, towels, quality food bowls, toys, and cleaning supplies are always appreciated. Please contact us to arrange a drop-off.</p></p>
+        </div>
+        <div style="flex: 1 1 350px;">
+            <h4>Become a Sponsor</h4>
+            <p>Sponsor a specific animal's journey from rescue to adoption. You'll receive regular updates and photos of the pet you're supporting.</p></p>
+        </div>
+    </div>
+
+
+<hr>
+    
+    <div style="text-align: center; padding-top: 10px; display: flex; align-items: center; justify-content: center; gap: 20px;">
+        
+        <img 
+            src="{% static 'img/acnc.png' %}" 
+            alt="ACNC Registered Charity Tick" 
+            style="width: 200px; height: auto;" 
+            width="200" 
+            height="200"
+        />
+
+        <p style="text-align: left; margin: 0;">
+            Paws a Moment Rescue is a registered charity with a Deductible Gift Recipient (DGR) status. 
+            <br>ABN 68 755 630 431.  All donations over $2 are tax deductible.  Receipt available upon request. 
+        </p>
+    </div>
+
+</div>
+
+{% endblock %}
+

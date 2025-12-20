@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Foster Application - Paws a Moment Rescue{% endblock %}
+
+{% block content %}
+<div class="adoption-page-header">
+    <h1 class="white-text">Foster Application Form</h1>
+</div>
+    
+<section class="purple-curve-section">
+    <div class="purple-scenery">
+        <svg class="purple-curve" viewBox="0 0 100 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,60 L0,0 Q50,60 100,0 L100,60 Z" fill="#f5f5f5" />
+        </svg>
+    </div>
+</section>
+
+<div class="white-content-box adoption-page-wrapper">
+    <h2>Help Us Find the Perfect Match</h2>
+    <p>Looking to adopt? Use the <a href="{% url 'applications:adoption_landing_page' %}">Adoption Form</a>. <span style="color: red;">*</span> = Required.</p>
+
+    <form class="app-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <h3 class="section-header">1. Personal & Contact Details</h3>
+        
+        <div class="form-group-flex">
+            <label>Name <span style="color: red;">*</span>:</label>
+            <div class="input-area">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" name="first_name" placeholder="First Name" required style="flex: 1;"/>
+                    <input type="text" name="last_name" placeholder="Last Name" required style="flex: 1;"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group-flex">
+            <label>Address <span style="color: red;">*</span>:</label>
+            <div class="input-area">
+                <input type="text" name="address_street" placeholder="Street Address" required style="margin-bottom: 5px;"/>
+                <input type="text" name="address_street2" placeholder="Line 2" style="margin-bottom: 5px;"/>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" name="address_city" placeholder="Suburb" required style="flex: 2;"/>
+                    <input type="text" name="address_state" placeholder="State" required style="flex: 1;"/>
+                    <input type="text" name="address_zip" placeholder="Postcode" required style="flex: 1;"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group-flex">
+            <label>Mobile Number <span style="color: red;">*</span>:</label>
+            <div class="input-area">
+                <input type="tel" name="mobile" required />
+            </div>
+        </div>
+
+        <div class="form-group-flex">
+            <label>Email <span style="color: red;">*</span>:</label>
+            <div class="input-area">
+                <input type="email" name="email" required placeholder="example@email.com" />
+            </div>
+        </div>
+
+        <h3 class="section-header">2. Fostering Requirements</h3>
+
+        <div class="form-group-flex">
+            <label>Type of Care:</label>
+            <div class="input-area">
+                <select name="foster_type">
+                    <option value="emergency">Emergency (1-2 weeks)</option>
+                    <option value="short">Short Term (2-6 Months)</option>
+                    <option value="long">Long Term (6 Months+)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group-flex">
+            <label>Work Schedule <span style="color: red;">*</span>:</label>
+            <div class="input-area">
+                <select name="work_schedule" required onchange="checkOther(this, 'work_other_div')">
+                    <option value="">-- Select --</option>
+                    <option value="WFH">Full Time WFH</option>
+                    <option value="Workplace">Full Time Workplace</option>
+                    <option value="Retired">Retired/Not Working</option>
+                    <option value="Other">Other</option>
+                </select>
+                <div id="work_other_div" style="display:none; margin-top:10px;">
+                    <input type="text" name="work_other" placeholder="Please specify schedule">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group-flex">
+            <label>Do you have any children? <span style="color: red;">*</span></label>
+            <div class="input-area">
+                <select name="children_status" required>
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="Visit">Often Visit</option>
+                </select>
+            </div>
+        </div>
+
+        <h3 class="section-header">3. Pet Preferences & Home</h3>
+        
+        <div class="form-group-flex">
+            <label>Yard Security <span style="color: red;">*</span>:</label>
+            <div class="input-area">
+                <textarea name="yard_description" rows="3" placeholder="Describe fence height and security..." required></textarea>
+            </div>
+        </div>
+
+        <div class="form-group-flex">
+            <label>Upload Yard Photos:</label>
+            <div class="input-area">
+                <input type="file" name="yard_photos" multiple accept="image/*" />
+                <small>Include fences and gates.</small>
+            </div>
+        </div>
+
+        <h3 class="section-header">4. Existing Pets</h3>
+
+        <div class="form-group-flex">
+            <label>Current Pets:</label>
+            <div class="input-area">
+                <textarea name="other_pets_list" rows="3" placeholder="List breeds/ages of current pets..."></textarea>
+            </div>
+        </div>
+
+        <div class="form-group-flex">
+            <label>Upload Vax Certificates:</label>
+            <div class="input-area">
+                <input type="file" name="vax_photos" multiple accept="image/*" />
+            </div>
+        </div>
+
+        <h3 class="section-header">5. Final Commitment</h3>
+        
+        <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <p>Do you agree to care for the animal until a forever home is found? Meet & Greets and Vet transport included?</p>
+            <label><input type="radio" name="agreement" value="Yes" required> I agree to the commitment</label>
+        </div>
+
+        <button type="submit" class="btn-link" style="width: 100%; padding: 15px; cursor: pointer;">Submit Foster Application</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function checkOther(select, divId) {
+    const div = document.getElementById(divId);
+    div.style.display = (select.value === 'Other') ? 'block' : 'none';
+}
+</script>
+{% endblock %}

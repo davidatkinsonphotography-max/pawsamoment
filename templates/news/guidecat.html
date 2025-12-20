@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Adult Cat Adoption Guide - Paws a Moment Rescue{% endblock %}
+{% block body_class %}subhero-background{% endblock %}
+
+{% block content %}
+<div class="adoption-page-header">
+    <h1 class="white-text">Adult Cat Adoption Guide</h1>
+</div>
+
+<section class="purple-curve-section">
+    <div class="purple-scenery">
+        <svg class="purple-curve" viewBox="0 0 100 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="curveShadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity="0.5"/>
+                </filter>
+            </defs>
+            <path d="M0,60 L0,0 Q50,60 100,0 L100,60 Z" fill="#f5f5f5" filter="url(#curveShadow)" />
+        </svg>
+    </div>
+</section>
+
+
+<div class="white-content-box">
+    <p>You've welcomed a wonderful adult cat into your world. Here's everything you need to help them settle in comfortably and thrive.</p>
+
+    <section id="preparing-home">
+        <h2>Preparing Your Home</h2>
+        <p>Adult cats tend to adapt well, but they still appreciate a safe setup. A little preparation makes a big difference.</p>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Secure loose cords and cables to avoid chewing or entanglement.</div>
+            <div class="custom-bullet-item">● Remove toxins like medications and cleaning products from easy reach.</div>
+            <div class="custom-bullet-item">● Keep breakable items off edges where curious paws may reach.</div>
+            <div class="custom-bullet-item">● Confirm houseplants are safe for cats; many common ones are not.</div>
+            <div class="custom-bullet-item">● Create one quiet retreat zone with soft bedding and low foot traffic.</div>
+        </div>
+        <br>
+        <img src="{% static 'img/cat1.png' %}" alt="Adult Cat Cartoon Image 1" class="guide-image">
+
+        <div class="kitten-essentials">
+            <h3>Essentials Checklist:</h3>
+            <table>
+                <thead><tr><th>Item</th></tr></thead>
+                <tbody>
+                    <tr><td>Food and water bowls</td></tr>
+                    <tr><td>Quality adult cat food</td></tr>
+                    <tr><td>Litter box and preferred litter</td></tr>
+                    <tr><td>Scratching post or scratching pad</td></tr>
+                    <tr><td>Comfortable bed or hideaway</td></tr>
+                    <tr><td>Interactive toys</td></tr>
+                    <tr><td>Cat carrier</td></tr>
+                    <tr><td>Brush and nail clippers</td></tr>
+                    <tr><td>Pet-safe first-aid kit</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="first-days">
+        <h2>The First Few Days</h2>
+        <p>Adult cats sometimes take things slowly. Here's how to help them settle in.</p>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Start with one room so they don't feel overwhelmed.</div>
+            <div class="custom-bullet-item">● Keep food, water, and a litter tray close by.</div>
+            <div class="custom-bullet-item">● Sit nearby and let them approach you when ready.</div>
+            <div class="custom-bullet-item">● Avoid loud noises or sudden movements early on.</div>
+            <div class="custom-bullet-item">● Allow several days for confidence to grow.</div>
+        </div>
+    </section>
+
+    <section id="feeding-cat">
+        <h2>Feeding Your Adult Cat</h2>
+        <p>Adult cats thrive on consistent, balanced meals. Choose an adult formula that suits their lifestyle and health needs.</p>
+        <p>Some enjoy mixed feeding, using both wet and dry food for variety. Watch their weight closely and adjust portions as needed.</p>
+
+        <div class="feeding-guidelines">
+            <h3>Feeding Guidelines:</h3>
+            <div class="custom-bullet-list">
+                <div class="custom-bullet-item">● Provide fresh water at all times.</div>
+                <div class="custom-bullet-item">● Stick to an adult cat diet recommended by your vet.</div>
+                <div class="custom-bullet-item">● Feed once or twice a day depending on preference.</div>
+                <div class="custom-bullet-item">● Avoid sudden diet changes; transition slowly.</div>
+            </div>
+
+            <img src="{% static 'img/cat2.png' %}" alt="Adult Cat Cartoon Image 2" class="guide-image">
+
+            <h3>Foods to Avoid:</h3>
+            <div class="custom-bullet-list">
+                <div class="custom-bullet-item">● Chocolate</div>
+                <div class="custom-bullet-item">● Raw meat or raw fish</div>
+                <div class="custom-bullet-item">● Grapes or raisins</div>
+                <div class="custom-bullet-item">● Onion and garlic</div>
+                <div class="custom-bullet-item">● Alcohol</div>
+                <div class="custom-bullet-item">● Dairy products</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="litter-training">
+        <h2>Litter Habits</h2>
+        <p>Most adult cats already understand litter trays, but they may need help adjusting to your setup.</p>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Place trays in calm locations.</div>
+            <div class="custom-bullet-item">● Offer their preferred litter texture if known.</div>
+            <div class="custom-bullet-item">● Scoop daily to maintain hygiene.</div>
+            <div class="custom-bullet-item">● Provide multiple trays in multi-cat homes.</div>
+            <div class="custom-bullet-item">● Never punish accidents; stress often plays a role.</div>
+        </div>
+    </section>
+
+    <section id="grooming">
+        <h2>Grooming</h2>
+        <p>Grooming keeps your cat's coat healthy and strengthens your bond.</p>
+        <img src="{% static 'img/cat3.png' %}" alt="Adult Cat Cartoon Image 3" class="guide-image">
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Brush weekly for short-haired cats and daily for long-haired cats.</div>
+            <div class="custom-bullet-item">● Trim nails every few weeks.</div>
+            <div class="custom-bullet-item">● Check ears monthly for dirt or irritation.</div>
+            <div class="custom-bullet-item">● Only bathe if truly necessary.</div>
+        </div>
+    </section>
+
+    <section id="socialisation-play">
+        <h2>Socialisation and Play</h2>
+        <p>Adult cats love play, even if they pretend otherwise. A little enrichment goes a long way.</p>
+        <img src="{% static 'img/cat4.png' %}" alt="Adult Cat Cartoon Image 4" class="guide-image">
+        <h3>Safe Play Tips:</h3>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Use wand toys to mimic prey.</div>
+            <div class="custom-bullet-item">● Offer puzzle feeders for mealtime enrichment.</div>
+            <div class="custom-bullet-item">● Rotate toys so they stay interesting.</div>
+            <div class="custom-bullet-item">● Avoid small pieces that could be swallowed.</div>
+        </div>
+
+        <h3>Recommended Toys:</h3>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Wand toys</div>
+            <div class="custom-bullet-item">● Jingle balls</div>
+            <div class="custom-bullet-item">● Scratching posts</div>
+            <div class="custom-bullet-item">● Soft plush toys</div>
+        </div>
+    </section>
+
+    <section id="health-care">
+        <h2>Health Care</h2>
+        <p>Routine vet care keeps your adult cat feeling their best.</p>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Keep vaccinations up to date.</div>
+            <div class="custom-bullet-item">● Maintain flea and tick prevention.</div>
+            <div class="custom-bullet-item">● Schedule yearly health checks.</div>
+            <div class="custom-bullet-item">● Monitor weight and appetite changes.</div>
+            <div class="custom-bullet-item">● Track any changes in behaviour.</div>
+        </div>
+
+        <img src="{% static 'img/cat5.png' %}" alt="Adult Cat Cartoon Image 5" class="guide-image">
+
+        <h3>When to Call the Vet:</h3>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Vomiting or diarrhoea</div>
+            <div class="custom-bullet-item">● Difficulty breathing</div>
+            <div class="custom-bullet-item">● Loss of appetite</div>
+            <div class="custom-bullet-item">● Lethargy</div>
+            <div class="custom-bullet-item">● Sudden behaviour changes</div>
+        </div>
+    </section>
+
+    <section id="conclusion">
+        <h2>Conclusion</h2>
+        <p>Your new cat is lucky to have you. With patience, love, and a steady routine, they'll settle in beautifully and become a cherished part of your life.</p>
+        <p>If you need support, Paws a moment is here to help anytime.</p>
+
+        <div class="final-image-layout">
+            <img src="{% static 'img/Picture7.png' %}" alt="Logo" class="final-image logo-image">
+            <img src="{% static 'img/cat9.png' %}" alt="Cat" class="final-image cat-image">
+            <div class="flex-break"></div>
+            <img src="{% static 'img/Picture9.jpg' %}" alt="Paw prints" class="final-image footprint-image">
+        </div>
+    </section>
+</div>
+{% endblock %}

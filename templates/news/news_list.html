@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}News & Events - Paws a Moment Rescue{% endblock %}
+{% block body_class %}subhero-background{% endblock %}
+
+{% block content %}
+<div class="adoption-page-header">
+    <h1 class="white-text">Latest News & Events</h1>
+</div>
+
+<section class="purple-curve-section">
+    <div class="purple-scenery">
+        </div>
+</section>
+
+<div class="white-content-box adoption-page-wrapper" style="margin-top: 40px;">
+    <h2>Our Stories and Updates</h2>
+
+    <div class="news-container">
+        {% for article in articles %}
+        <article class="news-item-blog" style="margin-bottom: 40px;">
+            <div class="article-header-purple">
+                <h3 style="margin: 0; color: white;">{{ article.title }}</h3>
+            </div>
+            
+            <div class="news-layout-row">
+                <div class="article-body-text">
+                    <p class="card-meta">
+                        <strong>Category:</strong> {{ article.get_category_display }} | 
+                        <time>{{ article.date_entered|date:"F d, Y" }}</time>
+                    </p>
+                    <div class="full-article-content">
+                        {{ article.content|safe }}
+                    </div>
+                </div>
+
+                {% if article.image %}
+                <div class="article-image-right">
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                </div>
+                {% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Puppy Adoption Guide - Paws a Moment Rescue{% endblock %}
+{% block body_class %}subhero-background{% endblock %}
+
+{% block content %}
+<div class="adoption-page-header">
+    <h1 class="white-text">Puppy Adoption Guide</h1>
+</div>
+
+<section class="purple-curve-section">
+    <div class="purple-scenery">
+        <svg class="purple-curve" viewBox="0 0 100 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="curveShadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity="0.5"/>
+                </filter>
+            </defs>
+            <path d="M0,60 L0,0 Q50,60 100,0 L100,60 Z" fill="#f5f5f5" filter="url(#curveShadow)" />
+        </svg>
+    </div>
+</section>
+
+
+<div class="white-content-box">
+    <p>Welcome to the family! Here is your guide to caring for your new puppy.</p>
+
+    <section id="preparing-home">
+        <h2>Preparing Your Home</h2>
+        <p>Before your puppy arrives, take some time to puppy-proof your home. This means securing any potential hazards, such as:</p>
+
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● <strong>Electrical cords:</strong> Tuck them away or cover them to prevent chewing.</div>
+            <div class="custom-bullet-item">● <strong>Toxic substances:</strong> Store cleaning supplies, medications, and chemicals out of reach.</div>
+            <div class="custom-bullet-item">● <strong>Small objects:</strong> Remove anything that could be swallowed, like small toys, coins, or socks.</div>
+            <div class="custom-bullet-item">● <strong>Houseplants:</strong> Identify and remove any plants that are toxic to dogs.</div>
+            <div class="custom-bullet-item">● <strong>Unstable furniture:</strong> Secure bookshelves or lamps that could be knocked over.</div>
+        </div>
+
+        <img src="{% static 'img/puppy1.png' %}" alt="Puppy Cartoon Image 1" class="guide-image">
+
+        <div class="kitten-essentials">
+            <h3>Essentials Checklist:</h3>
+            <table>
+                <thead>
+                    <tr><th>Item</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Food and water bowls</td></tr>
+                    <tr><td>High-quality puppy food (wet and dry)</td></tr>
+                    <tr><td>Collar, harness and lead</td></tr>
+                    <tr><td>Crate or comfy bed</td></tr>
+                    <tr><td>Puppy-safe toys and chews</td></tr>
+                    <tr><td>Puppy pads or designated toilet area</td></tr>
+                    <tr><td>Brush, nail clippers, and puppy shampoo</td></tr>
+                    <tr><td>Poop bags</td></tr>
+                    <tr><td>Puppy carrier (optional)</td></tr>
+                    <tr><td>First-aid kit for pets</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Create a safe and comfortable space for your puppy where they can retreat and feel secure. This could be a spare room, a puppy pen, or a cosy bed in a quiet corner. Make sure they have easy access to their food, water, toys, and toilet area.</p>
+    </section>
+
+    <section id="first-days">
+        <h2>The First Few Days</h2>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● <strong>Confine them to a small area:</strong> This will help them feel more secure and make establishing routines easier.</div>
+            <div class="custom-bullet-item">● <strong>Offer food and water:</strong> Place bowls nearby and encourage small regular meals.</div>
+            <div class="custom-bullet-item">● <strong>Show them the toilet spot:</strong> Gently guide them to the designated area after naps and meals.</div>
+            <div class="custom-bullet-item">● <strong>Provide gentle interaction:</strong> Let them come to you. Keep greetings calm and low-key.</div>
+            <div class="custom-bullet-item">● <strong>Be patient:</strong> Puppies can feel overwhelmed. Consistency helps them settle quicker.</div>
+        </div>
+    </section>
+
+    <section id="feeding-puppy">
+        <h2>Feeding Your Puppy</h2>
+        <p>Puppies have different nutritional needs than adult dogs. They require food higher in calories and specific nutrients to support growth and brain development.</p>
+
+        <div class="feeding-guidelines">
+            <h3>Feeding Guidelines:</h3>
+            <div class="custom-bullet-list">
+                <div class="custom-bullet-item">● Always provide fresh, clean water.</div>
+                <div class="custom-bullet-item">● Feed a high-quality puppy formula.</div>
+                <div class="custom-bullet-item">● Follow the feeding guidelines on the packaging and adjust by activity and growth.</div>
+                <div class="custom-bullet-item">● Divide their daily food into multiple small meals.</div>
+                <div class="custom-bullet-item">● Avoid overfeeding to prevent rapid growth issues.</div>
+            </div>
+
+            <img src="{% static 'img/puppy2.png' %}" alt="Puppy Cartoon Image 2" class="guide-image">
+
+            <h3>Foods to Avoid:</h3>
+            <div class="custom-bullet-list">
+                <div class="custom-bullet-item">● Chocolate</div>
+                <div class="custom-bullet-item">● Onions and garlic</div>
+                <div class="custom-bullet-item">● Grapes and raisins</div>
+                <div class="custom-bullet-item">● Alcohol</div>
+                <div class="custom-bullet-item">● Cooked bones</div>
+                <div class="custom-bullet-item">● Raw meat or fish unless vet-advised</div>
+                <div class="custom-bullet-item">● Artificial sweeteners like xylitol</div>
+            </div>
+
+            <p>Consult your veterinarian for breed and size-specific feeding recommendations.</p>
+        </div>
+    </section>
+
+    <section id="toilet-training">
+        <h2>Toilet Training</h2>
+        <img src="{% static 'img/puppy7.png' %}" alt="Puppy Cartoon Image 3" class="guide-image">
+        <p>Toilet training takes consistency and patience. Use positive reinforcement and a clear routine to help your puppy learn.</p>
+
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Take them to the toilet spot frequently: after waking, eating, and playing.</div>
+            <div class="custom-bullet-item">● Reward them immediately after they eliminate in the right place.</div>
+            <div class="custom-bullet-item">● Supervise indoors and confine safely when you cannot watch them.</div>
+            <div class="custom-bullet-item">● Clean accidents thoroughly to remove scent cues.</div>
+            <div class="custom-bullet-item">● Consider puppy pads temporarily for small breeds or apartment living.</div>
+        </div>
+    </section>
+
+    <section id="grooming">
+        <h2>Grooming</h2>
+        <p>Getting puppies used to grooming early makes life easier long term. Keep sessions short and positive.</p>
+
+        <img src="{% static 'img/puppy3.png' %}" alt="Puppy Cartoon Image 3" class="guide-image">
+
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Brushing: Regular brushing reduces shedding and prevents mats.</div>
+            <div class="custom-bullet-item">● Nail trimming: Start young so they accept it later.</div>
+            <div class="custom-bullet-item">● Bathing: Use puppy-safe shampoo and keep baths infrequent.</div>
+            <div class="custom-bullet-item">● Ear cleaning: Check and clean gently as advised by your vet.</div>
+            <div class="custom-bullet-item">● Dental care: Introduce brushing or dental chews early.</div>
+        </div>
+    </section>
+
+    <section id="socialisation-play">
+        <h2>Socialisation and Play</h2>
+        <p>Socialisation is the foundation of a well-adjusted adult dog. Introduce new people, animals, surfaces, and sounds in a positive way.</p>
+
+        <img src="{% static 'img/puppy4.png' %}" alt="Puppy Cartoon Image 4" class="guide-image">
+
+        <h3>Safe Play Tips:</h3>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Supervise all play and choose age-appropriate toys.</div>
+            <div class="custom-bullet-item">● Avoid rough play with hands and feet.</div>
+            <div class="custom-bullet-item">● Rotate toys to keep interest high.</div>
+            <div class="custom-bullet-item">● Use puzzle feeders for mental stimulation.</div>
+        </div>
+
+        <h3>Recommended Toys:</h3>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Chew toys</div>
+            <div class="custom-bullet-item">● Tug toys</div>
+            <div class="custom-bullet-item">● Balls</div>
+            <div class="custom-bullet-item">● Plush toys</div>
+        </div>
+    </section>
+
+    <section id="health-care">
+        <h2>Health Care</h2>
+        <p>Early veterinary care is essential to keep your puppy healthy and protect them from common illnesses.</p>
+
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Vaccinations: Follow the schedule recommended by your vet.</div>
+            <div class="custom-bullet-item">● Deworming: Puppies commonly need regular worming.</div>
+            <div class="custom-bullet-item">● Flea and tick prevention: Start with vet-approved products.</div>
+            <div class="custom-bullet-item">● Microchipping: Recommended for permanent ID.</div>
+            <div class="custom-bullet-item">● Desexing: Discuss timing with your vet.</div>
+        </div>
+
+        <img src="{% static 'img/puppy5.png' %}" alt="Puppy Cartoon Image 5" class="guide-image">
+
+        <h3>When to Call the Vet:</h3>
+        <div class="custom-bullet-list">
+            <div class="custom-bullet-item">● Loss of appetite</div>
+            <div class="custom-bullet-item">● Persistent vomiting or diarrhoea</div>
+            <div class="custom-bullet-item">● Difficulty breathing</div>
+            <div class="custom-bullet-item">● Lethargy or weakness</div>
+            <div class="custom-bullet-item">● Sudden behavioural changes</div>
+        </div>
+    </section>
+
+    <section id="conclusion">
+        <h2>Conclusion</h2>
+        <p>Bringing a puppy home is a big commitment but an incredibly rewarding one. With patience, routine, and lots of love, your puppy will grow into a well-mannered, joyful companion.</p>
+        <p>Thank you for choosing to adopt from Paws a moment! We are here to support you every step of the way.</p>
+
+        <div class="final-image-layout">
+            <img src="{% static 'img/Picture7.png' %}" alt="Logo" class="final-image logo-image">
+            <img src="{% static 'img/puppy9.png' %}" alt="Puppy" class="final-image cat-image">
+            <div class="flex-break"></div>
+            <img src="{% static 'img/Picture9.jpg' %}" alt="Paw prints" class="final-image footprint-image">
+        </div>
+    </section>
+</div>
+{% endblock %}
