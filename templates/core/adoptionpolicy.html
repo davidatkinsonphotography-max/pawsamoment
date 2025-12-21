@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Adoption Policy - Paws a Moment Rescue{% endblock %}
+
+{% block content %}
+<div class="adoption-page-header">
+    <h1 class="white-text">Adoption Policy</h1>
+    <p class="white-text">Ensuring the best match for our animals and your family.</p>
+</div>
+
+<section class="purple-curve-section">
+    <div class="purple-scenery">
+        <svg class="purple-curve" viewBox="0 0 100 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,60 L0,0 Q50,60 100,0 L100,60 Z" fill="#f5f5f5"/>
+        </svg>
+    </div>
+</section>
+
+<div class="white-content-box adoption-page-wrapper" style="padding-bottom: 80px;">
+    <div class="policy-container" style="max-width: 900px; margin: 0 auto; line-height: 1.8; color: #333;">
+        
+        <p><strong>Paws a Moment and Rescue</strong></p>
+        <p>Thank you for considering adoption through Paws a Moment and Rescue. Our adoption process is designed to ensure the best possible match for both our animals and their new families.</p>
+        
+        <h3 style="color: #483D8B; margin-top: 40px; border-bottom: 2px solid #f0edff;">The Adoption Process</h3>
+        
+        <h4 style="color: #6A5ACD; margin-top: 25px;">Finding a pet</h4>
+        <p>Start by viewing the profiles of our available dogs and cats on our website. You may apply for one or more animals.</p>
+
+        <h4 style="color: #6A5ACD; margin-top: 25px;">Adoption Questionnaire</h4>
+        <p>Complete our online Adoption Questionnaire: <a href="{% url 'applications:adoption_landing_page' %}" target="_blank" style="color: #6A5ACD; font-weight: bold;">Adoption Page</a></p>
+        <p>You only need to complete this once. If applying for a specific animal, please include their name. If you are looking for a particular type of pet, you may describe your preferences instead.</p>
+
+        <h4 style="color: #6A5ACD; margin-top: 25px;">Application review and property check</h4>
+        <p>Once your application is approved by the foster carer and the Paws a Moment and Rescue coordinator, we will arrange a property check to confirm that your home and yard are suitable for the animal.</p>
+
+        <h4 style="color: #6A5ACD; margin-top: 25px;">Meet and greet</h4>
+        <p>A meet and greet is a critical part of the adoption process. The foster carer will arrange a meeting with the prospective adopter and any existing pets in the household. The location will be determined by the foster carer and may include a park, the foster carer’s home, or your home.</p>
+        <p>If everyone is happy, the adoption can proceed.</p>
+
+        <h3 style="color: #483D8B; margin-top: 40px; border-bottom: 2px solid #f0edff;">Finalising the adoption</h3>
+        <p>When you collect your new family member, you will be required to:</p>
+        <ul style="list-style-type: disc; margin-left: 20px; margin-bottom: 20px;">
+            <li>sign the Paws a Moment and Rescue Adoption Agreement</li>
+            <li>sign the NSW Companion Animals Register Change of Owner/Details form</li>
+            <li>pay the adoption fee</li>
+        </ul>
+        <p>Payment details will be provided at the time of approval. Personal cheques and cash payments are not accepted.</p>
+        <p>If payment is made by bank transfer, please include the pet’s name and your surname as the reference. Payment must be made at least 24 hours prior to collection so receipt can be confirmed. Please bring proof of payment with you.</p>
+        
+        <p style="background: #fff3cd; padding: 10px; border-radius: 5px; font-weight: bold; text-align: center; border: 1px solid #ffeeba;">No receipt, no handover.</p>
+        
+        <p>Special arrangements may be made for adopters living outside our usual operating region, including interstate adoptions. Please contact us to discuss individual circumstances.</p>
+
+        <h3 style="color: #483D8B; margin-top: 40px; border-bottom: 2px solid #f0edff;">Holding deposits</h3>
+        <p>If you are approved to adopt an animal but cannot take them home immediately, you may choose to pay a holding deposit.</p>
+        <ul style="list-style-type: disc; margin-left: 20px; margin-bottom: 20px;">
+            <li>The holding deposit is 50% of the adoption fee</li>
+            <li>The deposit holds the animal for up to two weeks</li>
+            <li>During this time, the animal will not be offered to another adopter</li>
+        </ul>
+        <p>Holding deposits are not refundable if you change your mind or if the animal is adopted and later returned.</p>
+        <p>If you require the animal to be held for longer than two weeks, approval may be required and a higher deposit may apply.</p>
+
+        <h3 style="color: #483D8B; margin-top: 40px; border-bottom: 2px solid #f0edff;">The trial period</h3>
+        <p>The full adoption fee must be paid before the animal goes home.</p>
+        <p>A two-week trial period begins on the day you receive the animal. If during this time you feel the animal is not suitable, you must return them to Paws a Moment and Rescue at your own expense.</p>
+        <p>In exceptional circumstances, you may request an extension of the trial period. Any extension must be approved and confirmed in writing. Extensions do not change refund conditions and are granted at our discretion.</p>
+
+        <h3 style="color: #483D8B; margin-top: 40px; border-bottom: 2px solid #f0edff;">On hold or on trial</h3>
+        <p>If an animal is marked “On Hold” or “On Trial”, they are temporarily unavailable for adoption. This may be due to medical treatment, training, or an existing application.</p>
+        <p>If you are interested in an animal marked this way, please contact us and leave your details. If the animal becomes available, we may contact you.</p>
+
+        <h3 style="color: #483D8B; margin-top: 40px; border-bottom: 2px solid #f0edff;">Refunds</h3>
+        <h4 style="color: #6A5ACD;">Animals under 4 months of age at adoption</h4>
+        <p>No refund is given if the animal is returned, whether during or after the trial period.</p>
+        
+        <h4 style="color: #6A5ACD;">Animals 4 months or older at adoption</h4>
+        <ul style="list-style-type: disc; margin-left: 20px; margin-bottom: 20px;">
+            <li>Returned during the trial period: refund of the adoption fee less 50%, or the deposit paid, whichever is greater</li>
+            <li>Returned after the trial period: no refund</li>
+        </ul>
+
+        <h3 style="color: #483D8B; margin-top: 40px; border-bottom: 2px solid #f0edff;">Returning an adopted animal</h3>
+        <p>If you are unable to keep your adopted animal after the trial period, our Adoption Agreement requires that you contact Paws a Moment and Rescue.</p>
+        <p>We will either assist with rehoming or take the animal back into our care. We ask for at least two weeks’ notice where possible to allow us time to arrange foster care. <strong>We never want one of our animals to end up in a pound.</strong></p>
+
+        <h3 style="color: #483D8B; margin-top: 40px; border-bottom: 2px solid #f0edff;">Change of ownership and registration</h3>
+        <p>The two-week trial period begins on the day you receive your adopted animal. If we do not hear from you by the end of the trial period, we will assume the adoption is proceeding.</p>
+        <p>We will then lodge the change of ownership with the NSW Pet Registry using the form you signed.</p>
+        <p>Approximately two to three months later, you will receive either a Certificate of Registration or a Certificate of Identification.</p>
+        <p>If you receive a Certificate of Registration, your pet is already registered. Please check the details and keep it safe. If you receive a Certificate of Identification, you must register your pet with your local council within 14 days. <strong>There is no registration fee for animals adopted from Paws a Moment and Rescue.</strong></p>
+        <p>If your contact details change, please update them with the NSW Pet Registry so you can be reunited with your pet if they become lost.</p>
+
+        <div style="background: #f0edff; padding: 30px; border-radius: 15px; margin-top: 50px; text-align: center; border-left: 5px solid #6A5ACD;">
+            <h4 style="color: #483D8B; margin-bottom: 15px;">Need some advice?</h4>
+            <p>If you don’t see the right pet listed, please check our website regularly. We add new animals frequently.</p>
+            <p>If you have any questions at all, please contact us. We’re here to help you find the right match, not rush you into the wrong one.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

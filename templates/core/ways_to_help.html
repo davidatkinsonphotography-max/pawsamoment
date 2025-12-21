@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="adoption-page-header">
+    <h1 class="white-text">Ways to Help</h1>
+</div>
+
+<section class="purple-curve-section"><div class="purple-scenery">
+    <svg class="purple-curve" viewBox="0 0 100 60" preserveAspectRatio="none"><path d="M0,60 L0,0 Q50,60 100,0 L100,60 Z" fill="#f5f5f5"/></svg>
+</div></section>
+
+<div class="white-content-box adoption-page-wrapper">
+    <div style="text-align: center; padding: 20px; background: #f9f9f9; border-radius: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <i class="fa-solid fa-heart-circle-check" style="font-size: 3rem; color: #6A5ACD;"></i>
+                <h3 style="color: #483D8B;">Make a Donation</h3>
+                <p>Financial support helps us cover essential vet bills, desexing, and emergency care.</p>
+            </div>
+            <a href="{% url 'core:donate' %}" class="btn-link" style="margin-top: 15px; text-decoration: none;">View Donation Options</a>
+        </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+        <div style="text-align: center; padding: 20px; background: #f9f9f9; border-radius: 15px;">
+            <i class="fa-solid fa-gift" style="font-size: 3rem; color: #6A5ACD;"></i>
+            <h3 style="color: #483D8B;">Donate Goods</h3>
+            <p>We always need quality dry food, flea/worming treatments, clean blankets, and towels.</p>
+        </div>
+        <div style="text-align: center; padding: 20px; background: #f9f9f9; border-radius: 15px;">
+            <i class="fa-solid fa-car" style="font-size: 3rem; color: #6A5ACD;"></i>
+            <h3 style="color: #483D8B;">Transport</h3>
+            <p>Help us move animals from pounds to foster homes or to vet appointments.</p>
+        </div>
+        <div style="text-align: center; padding: 20px; background: #f9f9f9; border-radius: 15px;">
+            <i class="fa-solid fa-share-nodes" style="font-size: 3rem; color: #6A5ACD;"></i>
+            <h3 style="color: #483D8B;">Share Our Story</h3>
+            <p>Following us on Social Media and sharing our available pets is a huge help!</p>
+        </div>
+    </div>
+    <div style="background: #f0edff; padding: 40px; border-radius: 15px; margin-top: 50px; text-align: center; border: 2px dashed #6A5ACD;">
+    <h3 style="color: #483D8B;">Want to join the team?</h3>
+    <p>Whether you want to help with transport, fundraising, or administrative support, we'd love to hear from you.</p>
+    <a href="{% url 'core:contact' %}" class="btn-link" style="display: inline-block; margin-top: 15px;">Send us a message</a>
+</div>
+</div>
+{% endblock %}

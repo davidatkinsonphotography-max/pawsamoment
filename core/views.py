@@ -42,3 +42,24 @@ def contact_view(request):
         form = ContactForm()
     
     return render(request, 'core/contact.html', {'form': form})
+
+def adoption_policy(request):
+    return render(request, 'core/adoptionpolicy.html')
+
+def terms_of_use(request):
+    return render(request, 'core/termsofuse.html')
+
+def privacy_policy(request):
+    return render(request, 'core/privacypolicy.html')
+
+def success_stories(request):
+    return render(request, 'core/success_stories.html')
+
+def about_us(request):
+    return render(request, 'core/about.html')
+
+def surrender_info(request):
+    return render(request, 'core/surrender.html')
+
+def ways_to_help(request):
+    return render(request, 'core/ways_to_help.html')

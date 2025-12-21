@@ -21,9 +21,14 @@
         <div class="footer-section">
             <h4>Information</h4>
             <ul>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="{% url 'core:privacy_policy' %}">Privacy Policy</a></li>
+                <li><a href="{% url 'core:terms_of_use' %}">Terms & Conditions</a></li>
+                <li><a href="{% url 'core:adoption_policy' %}">Adoption Policy</a></li>
                 <li><a href="{% url 'applications:foster_info' %}">Become a Foster Carer</a></li>
+                <li><a href="{% url 'core:about_us' %}">About Us</a></li>
+                <li><a href="{% url 'core:success_stories' %}">Success Stories</a></li>
+                <li><a href="{% url 'core:ways_to_help' %}">Ways to Help</a></li>
+                <li><a href="{% url 'core:surrender' %}">Surrendering your pet</a></li>
             </ul>
         </div>
 

@@ -73,7 +73,7 @@
 
                 <h2>About {{ animal.animal_name }}</h2>
                 <p>Status: <strong>{{ animal.get_status_display }}</strong></p>
-                <p>{{ animal.description }}</p>
+                <p>{{ animal.description|linebreaks }}</p>
             </div>
 
             <aside class="pet-vitals">
