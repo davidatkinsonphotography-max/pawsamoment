@@ -258,7 +258,7 @@ class SurrenderApplication(BaseApplication):
     legal_owner = models.CharField(max_length=50)
     legal_owner_details = models.TextField(blank=True)
     microchip_number = models.CharField(max_length=50)
-    last_vaccination = models.CharField(max_length=100)
+    last_vaccination = models.DateField(null=True, blank=True, verbose_name="Date of last Vaccination")
     desexed = models.CharField(max_length=20)
     is_wormed = models.BooleanField(default=True)
     heartworm_preventative = models.BooleanField(default=False)
@@ -289,7 +289,6 @@ class SurrenderApplication(BaseApplication):
     diet_other_details = models.TextField(blank=True)
 
     # 6. Personal Details (address/phone in BaseApplication)
-    contact_name = models.CharField(max_length=200) # Full name of person filling form
     phone = models.CharField(max_length=20)
     reason = models.TextField()
     time_in_care = models.CharField(max_length=100)
@@ -304,4 +303,4 @@ class SurrenderApplication(BaseApplication):
         ordering = ['-date_submitted']
 
     def __str__(self):
-        return f"Surrender: {self.pet_name} ({self.contact_name})"
+        return f"Surrender: {self.pet_name} ({self.full_name})"

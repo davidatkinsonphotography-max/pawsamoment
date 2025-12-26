@@ -7,18 +7,24 @@ class SurrenderForm(forms.ModelForm):
     micro_val = RegexValidator(r'^\d{15}$', "Microchip must be 15 digits.")
     phone_val = RegexValidator(r'^\d{1,10}$', "Phone number must be up to 10 digits.")
 
-# Mapping the specific names Django expects from BaseApplication
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'autocomplete': 'given-name'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'autocomplete': 'family-name'}))
+    # Mapping the specific names Django expects from BaseApplication
+    first_name = forms.CharField(label="First Name", widget=forms.TextInput(attrs={'autocomplete': 'given-name'}))
+    last_name = forms.CharField(label="Last Name", widget=forms.TextInput(attrs={'autocomplete': 'family-name'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'autocomplete': 'email'}))
     mobile = forms.CharField(widget=forms.TextInput(attrs={'autocomplete': 'tel'}))
 
+    # --- Pet Basics ---
+    pet_name = forms.CharField(label="Pet Name", max_length=100)
+    breed = forms.CharField(label="Breed", max_length=100)
+    size = forms.ChoiceField(label="Size", choices=[('Small','Small'),('Medium','Medium'),('Large','Large'),('XL','Extra Large')], widget=forms.RadioSelect)
+    
     # Pet DOB
     dob = forms.DateField(
         label="Pet's Date of Birth",
         widget=forms.DateInput(attrs={'type': 'date'}),
         required=False
     )
+    approximate_dob = forms.BooleanField(label="Approximate?", required=False)
 
     # --- Health & Ownership ---
     legal_owner = forms.ChoiceField(label="Are you the legal owner?", choices=[('Yes','Yes'),('No','No'),('Other','Other')], widget=forms.RadioSelect)
@@ -53,10 +59,7 @@ class SurrenderForm(forms.ModelForm):
     diet_other_details = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Please specify diet...'}))
 
     # --- Personal Details ---
-    # --- Split Name into two ---
-    first_name = forms.CharField(label="First Name")
-    last_name = forms.CharField(label="Last Name")
-# --- Address (Matching BaseApplication field names) ---
+    # --- Address (Matching BaseApplication field names) ---
     address_street = forms.CharField(label="Street Address", widget=forms.TextInput(attrs={'placeholder': 'Street Address'}))
     address_city = forms.CharField(label="Suburb", widget=forms.TextInput(attrs={'placeholder': 'Suburb'}))
     address_state = forms.ChoiceField(label="State", choices=[('NSW','NSW'),('ACT','ACT'),('QLD','QLD'),('VIC','VIC'),('SA','SA'),('TAS','TAS'),('WA','WA'),('NT','NT')])
@@ -70,10 +73,8 @@ class SurrenderForm(forms.ModelForm):
 
     class Meta:
         model = SurrenderApplication
-        # Explicitly maps form data to the model fields
-        fields = '__all__'
         # We hide 'age' (human) and admin fields from the user
-        exclude = ['age', 'processed', 'notes']
+        exclude = ['age', 'processed', 'notes', 'date_submitted', 'address_street2', 'is_wormed', 'heartworm_preventative', 'blurb']
 
     def clean(self):
         """Custom cleaning to convert lists from CheckboxSelectMultiple into strings for the model"""

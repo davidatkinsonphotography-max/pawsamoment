@@ -36,16 +36,34 @@ class SurrenderApplicationAdmin(admin.ModelAdmin):
     # This groups the fields into readable sections in the admin
     fieldsets = (
         ('Applicant Details', {
-            'fields': (('first_name', 'last_name'), 'email', 'mobile', 'age')
+            'fields': (('first_name', 'last_name'), 'email', 'mobile', 'phone')
         }),
         ('Address', {
             'fields': ('address_street', 'address_street2', 'address_city', 'address_state', 'address_zip')
         }),
         ('Pet Details', {
-            'fields': ('pet_name', 'breed', 'size', 'age_group', 'desexed', 'microchip_number')
+            'fields': ('pet_name', 'breed', 'size', 'dob', 'approximate_dob', 'desexed', 'microchip_number', 'last_vaccination')
+        }),
+        ('Health', {
+            'fields': ('is_wormed', 'heartworm_preventative')
+        }),
+        ('Ownership', {
+            'fields': ('legal_owner', 'legal_owner_details')
+        }),
+        ('Compatibility', {
+            'fields': ('living_with_dogs', 'dog_sizes_exposed', 'dog_friendly', 'cat_friendly', 'living_with_children', 'child_ages')
+        }),
+        ('Behavior & Lifestyle', {
+            'fields': ('living_arrangements', 'toilet_trained', 'behavioral_issues', 'food_aggression', 'fear_triggers', 'commands', 'meeting_strangers', 'travel_well', 'walks_well')
+        }),
+        ('Environment & Diet', {
+            'fields': ('yard_type', 'fencing_details', 'current_diet', 'diet_other_details')
+        }),
+        ('Surrender Details', {
+            'fields': ('reason', 'time_in_care', 'urgency', 'urgency_other_details', 'preference', 'blurb')
         }),
         ('Admin Status', {
-            'fields': ('processed', 'notes')
+            'fields': ('date_submitted', 'processed', 'notes')
         }),
     )
 
