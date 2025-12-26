@@ -41,11 +41,11 @@ def surrender_view(request):
                     reply_to=[data['email']],
                     fail_silently=False,
                 )
-                return redirect('applications:application_success')
+                return redirect('core:application_success')
             except Exception as e:
                 print(f"Email error: {e}")
                 # Still redirect to success because the record IS saved to Admin
-                return redirect('applications:application_success')
+                return redirect('core:application_success')
         else:
             # If form is invalid, print errors to console to see why
             print("Form validation errors:")
@@ -84,4 +84,4 @@ def ways_to_help(request):
     return render(request, 'core/ways_to_help.html')
 
 def application_success_view(request):
-    return render(request, 'applications/application_success.html')
+    return render(request, 'core/application_success.html')
