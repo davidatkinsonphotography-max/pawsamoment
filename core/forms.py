@@ -84,3 +84,21 @@ class SurrenderForm(forms.ModelForm):
                 # Joins list items with a comma so they fit in CharField/TextField
                 cleaned_data[field] = ", ".join(value)
         return cleaned_data
+    def save(self, commit=True):
+    instance = super().save(commit=False)
+    
+    # Fill in the "Hidden" required fields from BaseApplication
+    instance.age = 18 
+    instance.processed = False
+    
+    # Combine first/last name for the database 'contact_name' field
+    first = self.cleaned_data.get('first_name', '')
+    last = self.cleaned_data.get('last_name', '')
+    instance.contact_name = f"{first} {last}".strip()
+    
+    # Ensure mobile is filled (often maps to phone)
+    instance.mobile = self.cleaned_data.get('phone', '')
+
+    if commit:
+        instance.save()
+    return instance
