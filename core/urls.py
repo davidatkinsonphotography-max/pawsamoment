@@ -14,7 +14,8 @@ urlpatterns = [
     path('adoption-policy/', views.adoption_policy, name='adoption_policy'),
     path('success-stories/', views.success_stories, name='success_stories'),
     path('about-us/', views.about_us, name='about_us'),
-    path('surrender/', views.surrender_info, name='surrender'),
+    path('surrender/', views.surrender_view, name='surrender'),
     path('ways-to-help/', views.ways_to_help, name='ways_to_help'),
+    path('success/', views.application_success_view, name='application_success'),
 ]
 

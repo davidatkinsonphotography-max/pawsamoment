@@ -27,9 +27,12 @@
     }
 </style>
 <div class="adoption-page-header">
-    <h1 class="white-text">{{ animal.animal_name }}</h1>
+    <h1 class="animal-name">{{ animal.animal_name }}</h1>
+    <p style="font-style: italic; color: #f5f5f5; font-size: 1.6rem; margin-top: -10px; margin-bottom: 20px;">
+        "{{ animal.blurb }}"
+    </p>
     <p class="pet-hero-meta white-text">{{ animal.species }} · {{ animal.breed }} · {{ animal.location }}</p><br>
-    
+
 </div>
 
 <section class="purple-curve-section">
@@ -50,10 +53,10 @@
 </section>
 
 <main class="pet-detail-main">
-    
+
     <section class="pet-detail">
         <div class="pet-layout">
-            
+
             <div class="pet-main">
                 <div class="pet-photo-main">
                     {% if animal.primary_image %}
@@ -76,40 +79,67 @@
                 <p>{{ animal.description|linebreaks }}</p>
             </div>
 
-            <aside class="pet-vitals">
-                <h2>Vitals</h2>
-                <ul>
-                    {% if animal.dob %}
-                    <li><strong>Age:</strong> {% if animal.approximate_dob %}Approx. {% endif %}{{ animal.dob|timesince }}</li>
-                    {% endif %}
-                    <li><strong>Size:</strong> {{ animal.size }}</li>
-                    <li><strong>Sex:</strong> {{ animal.sex }}</li>
-                    {% if animal.weight_kg %}
-                    <li><strong>Weight:</strong> {{ animal.weight_kg }} kg</li>
-                    {% endif %}
-                    <li><strong>Adoption fee:</strong> ${{ animal.adoption_fee }}</li>
-                    <li><strong>Location:</strong> {{ animal.location }}</li>
-                    <li><strong>Status:</strong> {{ animal.get_status_display }}</li>
-                    
-                </ul>
-
-                <ul class="pet-flags">
-                    <li><strong>Good with kids:</strong> {% if animal.good_with_kids %}Yes{% else %}No{% endif %}</li>
-                    <li><strong>Special needs:</strong> {% if animal.special_needs %}Yes{% else %}No{% endif %}</li>
-                    <!--<li><strong>Microchipped:</strong> {% if animal.microchipped %}Yes{% else %}No{% endif %}</li>-->
-                    <li><strong>Vaccinated:</strong> {% if animal.vaccinated %}Yes{% else %}No{% endif %}</li>
-                    <li><strong>Desexed:</strong> {% if animal.desexed %}Yes{% else %}No{% endif %}</li>
-                    <li><strong>Microchipped:</strong> 
-                        {% if animal.microchipped %}
-                        Yes {% if animal.microchip_number %}(#{{ animal.microchip_number }}){% endif %}
-                        {% else %}
-                        No
+            <aside class="pet-vitals" style="position: sticky; top: 20px; align-self: start; height: fit-content;">
+                <div style="background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <h2 style="margin-top: 0;">Vitals</h2>
+                    <ul style="list-style: none; padding: 0; margin-bottom: 20px;">
+                        {% if animal.dob %}
+                        <li><strong>Age:</strong> {% if animal.approximate_dob %}Approx. {% endif %}{{ animal.dob|timesince }}</li>
                         {% endif %}
-                    </li>
-                </ul>
+                        <li><strong>Size:</strong> {{ animal.size }}</li>
+                        <li><strong>Sex:</strong> {{ animal.sex }}</li>
+                        <li><strong>Adoption fee:</strong> ${{ animal.adoption_fee }}</li>
+                        <li><strong>Location:</strong> {{ animal.location }}</li>
+                        <li><strong>Interstate:</strong>
+                            {% if animal.interstate_adoption %}
+                                <span style="color: #2e7d32; font-weight: bold;">Yes:</span>
+                                {% if animal.act %}ACT {% endif %}{% if animal.nsw %}NSW {% endif %}{% if animal.vic %}VIC {% endif %}{% if animal.qld %}QLD {% endif %}{% if animal.sa %}SA {% endif %}{% if animal.wa %}WA {% endif %}{% if animal.tas %}TAS{% endif %}
+                            {% else %}
+                                NSW Only
+                            {% endif %}
+                        </li>
+                    </ul>
 
-                <a class="btn-link" href="{% url 'applications:adoption_landing_page' %}?pet={{ animal.slug }}">Apply to adopt {{ animal.animal_name }}</a>
-            </aside>
+                    <div style="background: #f8f7ff; border-radius: 15px; padding: 15px; margin-bottom: 20px; border: 1px solid #e0defa;">
+                        <h4 style="color: #483D8B; margin-bottom: 12px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Compatibility</h4>
+
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                {% if animal.good_with_dogs %}<i class="fa-solid fa-circle-check" style="color: #2e7d32;"></i>{% else %}<i class="fa-solid fa-circle-xmark" style="color: #d32f2f;"></i>{% endif %}
+                                <i class="fa-solid fa-dog" style="width: 20px;"></i> Other Dogs
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                {% if animal.good_with_cats %}<i class="fa-solid fa-circle-check" style="color: #2e7d32;"></i>{% else %}<i class="fa-solid fa-circle-xmark" style="color: #d32f2f;"></i>{% endif %}
+                                <i class="fa-solid fa-cat" style="width: 20px;"></i> Other Cats
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                {% if animal.kids_under_5 %}<i class="fa-solid fa-circle-check" style="color: #2e7d32;"></i>{% else %}<i class="fa-solid fa-circle-xmark" style="color: #d32f2f;"></i>{% endif %}
+                                <i class="fa-solid fa-baby" style="width: 20px;"></i> Kids < 5
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                {% if animal.kids_5_to_12 %}<i class="fa-solid fa-circle-check" style="color: #2e7d32;"></i>{% else %}<i class="fa-solid fa-circle-xmark" style="color: #d32f2f;"></i>{% endif %}
+                                <i class="fa-solid fa-child-reaching" style="width: 20px;"></i> Kids 5-12
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul style="list-style: none; padding: 0; font-size: 0.9rem; border-top: 1px solid #eee; padding-top: 15px; margin-bottom: 20px;">
+                        <li><strong>Vaccinated:</strong> {% if animal.vaccinated %}Yes{% else %}No{% endif %}</li>
+                        <li><strong>Desexed:</strong> {% if animal.desexed %}Yes{% else %}No{% endif %}</li>
+                        <li><strong>Wormed:</strong> {% if animal.is_wormed %}Yes{% else %}No{% endif %}</li>
+
+                        {% if animal.heartworm_preventative %}
+                            <li style="color: #2e7d32;"><i class="fa-solid fa-shield-dog"></i> Heartworm Protected</li>
+                        {% endif %}
+
+                        {% if animal.microchip_number %}
+                            <li style="margin-top: 5px; color: #666;"><strong>Microchip:</strong> {{ animal.microchip_number }}</li>
+                        {% endif %}
+                    </ul>
+
+                    <a class="btn-link" href="{% url 'applications:adoption_landing_page' %}?pet={{ animal.slug }}" style="display: block; text-align: center;">Apply to Adopt {{ animal.animal_name }}</a>
+                </div>
+</aside>
         </div>
     </section>
 </main>
@@ -126,7 +156,7 @@
             thumb.addEventListener('click', function() {
                 // Change the main image src to the thumbnail src
                 mainImage.src = this.src;
-                
+
                 // Visual feedback: Highlight active thumb
                 thumbnails.forEach(t => t.style.border = 'none');
                 this.style.border = '2px solid #602263';

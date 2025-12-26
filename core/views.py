@@ -1,47 +1,63 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
-from applications.forms import ContactForm
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from .forms import SurrenderForm
 
-
+# --- RESTORE MISSING CLASSES ---
 class HomeView(TemplateView):
     template_name = 'core/home.html'
-
 
 class DonateView(TemplateView):
     template_name = 'core/donate.html'
 
-
 class GuidesView(TemplateView):
     template_name = 'core/guides.html'
 
-
-def contact_view(request):
+def surrender_view(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST)
+        form = SurrenderForm(request.POST)
         if form.is_valid():
-            contact = form.save()
-            
-            # Send email to admin
+            # 1. SAVE TO DATABASE (Do this first)
+            application = form.save()
+
+            # 2. EXTRACT DATA (Must happen before you use 'data')
+            data = form.cleaned_data
+
+            # 3. PREPARE EMAIL
+            subject = f"Surrender Inquiry: {data['pet_name']} - {data['first_name']} {data['last_name']}"
+
+            # Format email body
+            message_lines = [f"{field.replace('_', ' ').title()}: {value}" for field, value in data.items()]
+            message = "\n".join(message_lines)
+
             try:
                 send_mail(
-                    subject=f'Contact Form: {contact.name}',
-                    message=f'Name: {contact.name}\nEmail: {contact.email}\n\nMessage:\n{contact.message}',
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=[settings.DEFAULT_FROM_EMAIL],
+                    subject,
+                    message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    ['pawsamomentrescue@gmail.com'],
+                    reply_to=[data['email']],
                     fail_silently=False,
                 )
-                messages.success(request, 'Thank you for your message! We will get back to you soon.')
+                return redirect('applications:application_success')
             except Exception as e:
-                messages.error(request, 'There was an error sending your message. Please try again later.')
-            
-            return render(request, 'core/contact.html', {'form': ContactForm()})
+                print(f"Email error: {e}")
+                # Still redirect to success because the record IS saved to Admin
+                return redirect('applications:application_success')
+        else:
+            # If form is invalid, print errors to console to see why
+            print(form.errors)
     else:
-        form = ContactForm()
-    
-    return render(request, 'core/contact.html', {'form': form})
+        form = SurrenderForm()
+
+    return render(request, 'core/surrender.html', {'form': form})
+
+# Keep these helpers as they were
+def contact_view(request):
+    # ... your existing contact_view code ...
+    pass
 
 def adoption_policy(request):
     return render(request, 'core/adoptionpolicy.html')
@@ -59,7 +75,10 @@ def about_us(request):
     return render(request, 'core/about.html')
 
 def surrender_info(request):
-    return render(request, 'core/surrender.html')
+    return surrender_view(request, 'core/surrender.html')
 
 def ways_to_help(request):
     return render(request, 'core/ways_to_help.html')
+
+def application_success_view(request):
+    return render(request, 'applications/application_success.html')

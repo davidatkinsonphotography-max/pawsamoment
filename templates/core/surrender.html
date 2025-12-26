@@ -1,32 +1,407 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Surrendering your pet - Paws a Moment Rescue{% endblock %}
+{% block title %}Surrendering or Rehoming your dog - Paws a Moment Rescue{% endblock %}
+{% block body_class %}subhero-background{% endblock %}
 
 {% block content %}
+<style>
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+    }
+    .section-header {
+        margin-top: 40px;
+        color: #483D8B;
+        border-bottom: 2px solid #6A5ACD;
+        padding-bottom: 5px;
+        margin-bottom: 20px;
+    }
+    .info-banner {
+        background: #f0edff;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        font-size: 0.95em;
+        line-height: 1.6;
+        color: #333;
+        border-left: 4px solid #602263;
+    }
+
+    /* Enlarge and Align Radio/Checkboxes */
+.app-form input[type="radio"],
+.app-form input[type="checkbox"] {
+    width: 20px !important;
+    height: 20px !important;
+    cursor: pointer;
+    margin-right: 10px;
+    /* This aligns the middle of the button with the middle of the text */
+    vertical-align: middle;
+    position: relative;
+    top: -2px; /* Fine-tune adjustment */
+}
+
+/* Style the Labels for the Options */
+.app-form ul {
+    list-style: none;
+    padding-left: 25px; /* Indent the options */
+    margin-top: 10px;
+}
+
+.app-form ul li label {
+    font-weight: 400 !important; /* Remove bold from options */
+    color: #555 !important;
+    font-size: 0.95em;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Keep the main questions bold */
+.form-group > label {
+    font-weight: 600 !important;
+    color: #333 !important;
+    font-size: 1em;
+    margin-bottom: 12px;
+    display: block;
+}
+
+#kid_ages_row, #diet_other_box, #urgency_other_box {
+    margin-left: 30px; /* Aligns with the indented options */
+    width: calc(100% - 30px);
+}
+.app-form ul#id_legal_owner {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+/* If you prefer them stacked (better for mobile) */
+@media (max-width: 768px) {
+    .app-form ul#id_legal_owner {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+</style>
+
+<section class="purple-curve-section">
+    <div class="purple-scenery">
+        <svg class="purple-curve" viewBox="0 0 100 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="curveShadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity="0.5"/>
+                </filter>
+            </defs>
+            <path d="M0,60 L0,0 Q50,60 100,0 L100,60 Z" fill="#f5f5f5" filter="url(#curveShadow)"/>
+        </svg>
+    </div>
+</section>
+
 <div class="adoption-page-header">
-    <h1 class="white-text">Surrendering your pet</h1>
-    <p class="white-text">If you need to surrender your pet, we would like to help rehome.</p>
+    <h1 class="white-text">Need to Rehome your dog?</h1>
+    <p class="white-text">We are here to support you and your pet through this transition.</p>
 </div>
 
-<section class="purple-curve-section"><div class="purple-scenery">
-    <svg class="purple-curve" viewBox="0 0 100 60" preserveAspectRatio="none"><path d="M0,60 L0,0 Q50,60 100,0 L100,60 Z" fill="#f5f5f5"/></svg>
-</div></section>
+<div class="white-content-box adoption-page-wrapper" style="padding-bottom: 80px;">
+    <div style="max-width: 900px; margin: 0 auto;">
 
-<div class="white-content-box adoption-page-wrapper">
-    <div style="max-width: 800px; margin: 0 auto;">
-        <h2 style="color: #483D8B;">We Are Here to Help</h2>
-        <p>We understand that sometimes life circumstances change. As a foster-based rescue, we do not have a physical kennel facility. This means we can only take in animals when we have an available foster home.</p>
-        
-        <div style="border: 2px solid #eee; padding: 25px; border-radius: 15px; margin: 20px 0;">
-            <h4 style="color: #6A5ACD;">The Surrender Process:</h4>
-            <ol>
-                <li>Contact us via email with photos and a description of the animal.</li>
-                <li>We will search for a suitable foster placement.</li>
-                <li>If a home is found, we will arrange a temperament assessment.</li>
-            </ol>
+        <div style="margin-bottom: 40px; color: #333; line-height: 1.8;">
+            <p>Our foster carers are incredibly dedicated individuals. In addition to caring for animals surrendered due to unforeseen circumstances, most manage their own families, jobs, and pets. To ensure the safety of our carers and their households, we require comprehensive information before we can commit to a private surrender.</p>
+            <p>Because we have limited capacity for medium/large dogs or single-pet households, we often offer an <strong>Assisted Rehome</strong> if your dog's veterinary work (Microchipping, Vaccinations, and Desexing) is up to date.</p>
+
+            <div style="background: #fdfbff; border: 1px solid #602263; padding: 25px; border-radius: 12px; margin: 30px 0;">
+                <h3 style="color: #602263; margin-top: 0;">What is an Assisted Rehome?</h3>
+                <p>The dog remains in your care—which is often much less stressful for them—while we manage advertising on our Community page, PetRescue, and SavourLife. Great photos are the key to finding a match! <strong>The Assisted Rehome Fee is $150.00</strong>, paid to our Rescue Account to help support our ongoing veterinary bills.</p>
+            </div>
         </div>
-        <p>If you need to surrender an animal, please email us directly at <strong>pawsamomentandrescue@gmail.com</strong> with as much detail as possible.</p>
+
+        <hr style="border: 0; border-top: 2px dashed #eee; margin: 40px 0;">
+
+        <form method="post" class="app-form">
+            {% csrf_token %}
+
+            <h3 class="section-header">1. The Basics</h3>
+
+            <div class="form-group">
+                <label>{{ form.email.label }}*</label>
+                {{ form.email }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.pet_name.label }}*</label>
+                {{ form.pet_name }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.breed.label }}*</label>
+                {{ form.breed }}
+            </div>
+
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <div class="form-group" style="flex: 1; min-width: 200px;">
+                    <label>{{ form.size.label }}*</label>
+                    {{ form.size }}
+                </div>
+            <div class="form-group">
+                <label>Pet's Date of Birth*</label>
+                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                    <div style="flex: 2; min-width: 200px;">
+                        {{ form.dob }}
+                    </div>
+                    <div style="flex: 1; min-width: 150px; font-size: 0.9em; display: flex; align-items: center; gap: 5px;">
+                        {{ form.approximate_dob }} <span>Approximate?</span>
+                    </div>
+                </div>
+
+            </div>
+                <a href="javascript:void(0)" onclick="toggleAgeGuide()" style="font-size: 0.85em; color: #6A5ACD; text-decoration: underline; margin-top: 8px; display: inline-block;">
+                    <i class="fa-solid fa-circle-question"></i> Need help estimating their age?
+                </a>
+
+                <div id="age-guide-box" style="display: none; margin-top: 15px; padding: 15px; background: #f8f7ff; border: 1px solid #e0defa; border-radius: 8px; font-size: 0.9em; line-height: 1.5;">
+                    <h5 style="color: #483D8B; margin-top: 0; margin-bottom: 10px;">Quick Tips for Estimating Age:</h5>
+                    <ul style="padding-left: 20px; color: #555;">
+                        <li><strong>Teeth:</strong> Puppies have very white, tiny "needle" teeth. By 1 year, teeth are permanent and white. By 3-5 years, you'll see some yellowing (tartar) on back teeth.</li>
+                        <li><strong>Eyes:</strong> Young dogs have very clear eyes. Cloudy or bluish tints often appear in seniors (10+ years).</li>
+                        <li><strong>The "Grey Muzzle":</strong> Greying around the snout and eyes usually starts around 5-7 years, though this varies by breed.</li>
+                        <li><strong>Energy:</strong> Does he still have "puppy zoomies" or is he more of a "professional napper"?</li>
+                    </ul>
+                    <p style="margin-top: 10px; font-style: italic;">Just pick a date that feels closest and check the "Approximate" box!</p>
+                </div>
+            </div>
+
+            <h3 class="section-header">2. Health & Ownership</h3>
+
+            <div class="form-group">
+                <label>Are you the legal owner?*</label>
+                {{ form.legal_owner }}
+
+                <div id="legal_owner_details_box" style="display:none; margin-top:10px; padding: 15px; background: #f9f9f9; border-left: 3px solid #6A5ACD; margin-left: 30px;">
+                    <label>Please provide ownership details:*</label>
+                    {{ form.legal_owner_details }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.microchip_number.label }}*</label>
+                {{ form.microchip_number }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.last_vaccination.label }}*</label>
+                {{ form.last_vaccination }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.desexed.label }}*</label>
+                {{ form.desexed }}
+            </div>
+
+            <h3 class="section-header">3. Compatibility</h3>
+
+            <div class="form-group">
+                <label>{{ form.living_with_dogs.label }}*</label>
+                {{ form.living_with_dogs }}
+            </div>
+
+            <div class="form-group">
+                <label>Size of dogs exposed to?*</label>
+                {{ form.dog_sizes_exposed }}
+            </div>
+
+            <div class="form-group">
+                <label>Friendly with other dogs?*</label>
+                {{ form.dog_friendly }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.cat_friendly.label }}*</label>
+                {{ form.cat_friendly }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.living_with_children.label }}*</label>
+                {{ form.living_with_children }}
+            </div>
+
+            <div id="kid_ages_row" class="form-group" style="display:none; padding-left: 20px; border-left: 3px solid #6A5ACD; background: #f9f9f9; padding: 15px; border-radius: 5px;">
+                <label>Ages of children*</label>
+                {{ form.child_ages }}
+            </div>
+
+            <h3 class="section-header">4. Behavior & Lifestyle</h3>
+
+            <div class="form-group">
+                <label>Living arrangements*</label>
+                {{ form.living_arrangements }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.toilet_trained.label }}*</label>
+                {{ form.toilet_trained }}
+            </div>
+
+            <div class="form-group">
+                <label>Behavioral Issues*</label>
+                {{ form.behavioral_issues }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.food_aggression.label }}*</label>
+                {{ form.food_aggression }}
+            </div>
+
+            <div class="form-group">
+                <label>Fear/Aggression towards:*</label>
+                {{ form.fear_triggers }}
+            </div>
+
+            <div class="form-group">
+                <label>Known Commands:*</label>
+                {{ form.commands }}
+            </div>
+
+            <div class="form-group">
+                <label>Meeting Strangers:*</label>
+                {{ form.meeting_strangers }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.travel_well.label }}*</label>
+                {{ form.travel_well }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.walks_well.label }}*</label>
+                {{ form.walks_well }}
+            </div>
+
+            <h3 class="section-header">5. Environment & Diet</h3>
+
+            <div class="form-group">
+                <label>{{ form.yard_type.label }}*</label>
+                {{ form.yard_type }}
+            </div>
+
+            <div class="form-group">
+                <label>Fencing Description*</label>
+                {{ form.fencing_details }}
+            </div>
+
+            <div class="form-group">
+                <label>Current Diet*</label>
+                {{ form.current_diet }}
+                <div id="diet_other_box" style="display:none; margin-top:10px; padding: 15px; background: #f9f9f9; border-left: 3px solid #6A5ACD;">
+                    <label>Please specify diet:</label>
+                    {{ form.diet_other_details }}
+                </div>
+            </div>
+
+            <h3 class="section-header">6. Personal Details</h3>
+
+            <div class="form-group">
+                <label>Your Name*</label>
+            <div class="form-group">
+                <label for="{{ form.first_name.id_for_label }}">First Name*</label>
+                {{ form.first_name }}
+                {{ form.first_name.errors }} </div>
+
+            <div class="form-group">
+                <label for="{{ form.last_name.id_for_label }}">Last Name*</label>
+                {{ form.last_name }}
+                {{ form.last_name.errors }}
+            </div>
+            </div>
+
+            <div class="form-group">
+                <label>Address*</label>
+                {{ form.address_street }}
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <div style="flex: 2;">{{ form.address_city }}</div>
+                    <div style="flex: 1;">{{ form.address_state }}</div>
+                    <div style="flex: 1;">{{ form.address_zip }}</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.phone.label }}*</label>
+                {{ form.phone }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.reason.label }}*</label>
+                {{ form.reason }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.time_in_care.label }}*</label>
+                {{ form.time_in_care }}
+            </div>
+
+            <div class="form-group">
+                <label>Urgency / When rehoming is needed?*</label>
+                {{ form.urgency }}
+                <div id="urgency_other_box" style="display:none; margin-top:10px; padding: 15px; background: #f9f9f9; border-left: 3px solid #6A5ACD;">
+                    <label>Please specify timeframe:</label>
+                    {{ form.urgency_other_details }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.preference.label }}*</label>
+                {{ form.preference }}
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">
+                    Upon submission, please email documentation and photos to <strong>pawsamomentrescue@gmail.com</strong>.
+                </p>
+                <button type="submit" class="btn-link" style="width: auto; min-width: 300px; padding: 18px 60px; font-size: 1.1em;">
+                    Submit Rehoming Inquiry
+                </button>
+            </div>
+        </form>
     </div>
 </div>
+
+<script>
+function toggleAgeGuide() {
+    const guide = document.getElementById('age-guide-box');
+    if (guide.style.display === 'none') {
+        guide.style.display = 'block';
+    } else {
+        guide.style.display = 'none';
+    }
+}
+
+document.addEventListener('change', function(e) {
+    if (e.target.name === 'living_with_children') {
+        const val = e.target.value;
+        document.getElementById('kid_ages_row').style.display = (val === 'Yes') ? 'block' : 'none';
+    }
+
+    if (e.target.name === 'current_diet') {
+        // Handle radio or select logic for 'Other'
+        const val = e.target.value;
+        document.getElementById('diet_other_box').style.display = (val === 'Other') ? 'block' : 'none';
+    }
+
+    if (e.target.name === 'urgency') {
+        document.getElementById('urgency_other_box').style.display = (e.target.value === 'Other') ? 'block' : 'none';
+    }
+    if (e.target.name === 'legal_owner') {
+        const val = e.target.value;
+        // Show box if value is 'No' or 'Other'
+        const showDetails = (val === 'No' || val === 'Other');
+        document.getElementById('legal_owner_details_box').style.display = showDetails ? 'block' : 'none';
+    }
+});
+</script>
 {% endblock %}

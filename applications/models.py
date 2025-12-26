@@ -18,14 +18,14 @@ class BaseApplication(models.Model):
     date_submitted = models.DateTimeField(auto_now_add=True)
     processed = models.BooleanField(default=False)
     notes = models.TextField(blank=True)
-    
+
     class Meta:
         abstract = True
-    
+
     @property
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
-    
+
     @property
     def full_address(self):
         addr = self.address_street
@@ -42,10 +42,10 @@ class CatApplication(BaseApplication):
     pet_name = models.CharField(max_length=100, verbose_name="Cat/Kitten Name")
     coat_pref = models.CharField(max_length=100, blank=True)
     coat_other = models.CharField(max_length=200, blank=True)
-    
+
     # Contact (home_phone added to BaseApplication fields)
     home_phone = models.CharField(max_length=20, blank=True)
-    
+
     # Home & Family
     household_members = models.TextField(blank=True, verbose_name="Names and ages of household members")
     home_status = models.CharField(max_length=200, verbose_name="Rent or Own")
@@ -59,7 +59,7 @@ class CatApplication(BaseApplication):
     confinement = models.CharField(max_length=255, verbose_name="Where will cat be kept?")
     confinement_other = models.CharField(max_length=200, blank=True)
     food_plan = models.CharField(max_length=200, blank=True, verbose_name="Food plan")
-    
+
     # Lifestyle & Work
     work_status = models.CharField(max_length=100, blank=True)
     work_other = models.CharField(max_length=200, blank=True)
@@ -72,7 +72,7 @@ class CatApplication(BaseApplication):
     introducing_to_existing = models.CharField(max_length=200, blank=True)
     vet_care_importance = models.CharField(max_length=20, blank=True)
     children_education = models.CharField(max_length=100, blank=True)
-    
+
     # Commitment
     rehomed_before = models.CharField(max_length=100, blank=True)
     rehome_other = models.TextField(blank=True)
@@ -84,7 +84,7 @@ class CatApplication(BaseApplication):
     readiness = models.CharField(max_length=50, blank=True)
     readiness_other = models.CharField(max_length=200, blank=True)
     additional_info = models.TextField(blank=True)
-    
+
     class Meta:
         verbose_name = "Cat Adoption Application"
         verbose_name_plural = "Cat Adoption Applications"
@@ -102,10 +102,10 @@ class DogApplication(BaseApplication):
     dog_size_pref = models.CharField(max_length=100, verbose_name="Preferred Adult Size")
     size_other = models.CharField(max_length=200, blank=True)
     breed_experience = models.TextField(verbose_name="Experience with this breed")
-    
+
     # Contact (home_phone added to BaseApplication fields)
     home_phone = models.CharField(max_length=20, blank=True)
-    
+
     # Home & Family
     household_members = models.TextField(blank=True, verbose_name="Names and ages of household members")
     home_status = models.CharField(max_length=200, verbose_name="Rent or Own")
@@ -113,7 +113,7 @@ class DogApplication(BaseApplication):
     property_type = models.CharField(max_length=100)
     property_other = models.CharField(max_length=200, blank=True)
     residence_length = models.CharField(max_length=50, blank=True, verbose_name="How long lived in current home")
-    
+
     # Yard & Fencing
     yard_size = models.CharField(max_length=100)
     yard_other = models.CharField(max_length=200, blank=True)
@@ -123,7 +123,7 @@ class DogApplication(BaseApplication):
     home_check_ok = models.CharField(max_length=10, blank=True, verbose_name="Happy for home check?")
     other_pets_list = models.TextField(blank=True, verbose_name="Other pets list")
     other_animals_desexed = models.CharField(max_length=20, blank=True)
-    
+
     # Lifestyle & Work
     work_status = models.CharField(max_length=100)
     work_other = models.CharField(max_length=200, blank=True)
@@ -149,7 +149,7 @@ class DogApplication(BaseApplication):
     adjustment_plan = models.TextField(blank=True, verbose_name="Plan for adjustment period")
     vet_care_importance = models.CharField(max_length=20, blank=True)
     children_education = models.CharField(max_length=100, blank=True)
-    
+
     # Commitment
     rehomed_before = models.CharField(max_length=100, blank=True)
     rehome_history = models.TextField(blank=True, verbose_name="Previous rehoming history")
@@ -161,7 +161,7 @@ class DogApplication(BaseApplication):
     readiness = models.CharField(max_length=50, blank=True)
     readiness_other = models.CharField(max_length=200, blank=True)
     additional_info = models.TextField(blank=True)
-    
+
     class Meta:
         verbose_name = "Dog Adoption Application"
         verbose_name_plural = "Dog Adoption Applications"
@@ -203,7 +203,7 @@ class FosterApplication(BaseApplication):
     dog_friendly = models.CharField(max_length=50, blank=True)
     dog_vax = models.CharField(max_length=50, blank=True)
     dog_personality = models.TextField(blank=True)
-    
+
     # 5. Final Commitment
     final_comment = models.TextField(blank=True)
     agreement = models.CharField(max_length=10) # "Yes"
@@ -234,11 +234,74 @@ class ContactMessage(models.Model):
     date_submitted = models.DateTimeField(auto_now_add=True)
     processed = models.BooleanField(default=False)
     notes = models.TextField(blank=True)
-    
+
     class Meta:
         verbose_name = "Contact Message"
         verbose_name_plural = "Contact Messages"
         ordering = ['-date_submitted']
-    
+
     def __str__(self):
         return f"Contact from {self.name} - {self.date_submitted.strftime('%Y-%m-%d')}"
+
+class SurrenderApplication(BaseApplication):
+    age = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(18)])
+    """Specific questionnaire for Rehoming/Surrender Inquiries"""
+    # 1. The Basics (first_name, last_name, email, age are in BaseApplication)
+    pet_name = models.CharField(max_length=100)
+    breed = models.CharField(max_length=100)
+    size = models.CharField(max_length=50)
+    # Matching the Animal Listing logic exactly
+    dob = models.DateField(null=True, blank=True, verbose_name="Animal Date of Birth")
+    approximate_dob = models.BooleanField(default=False)
+
+    # 2. Health & Ownership
+    legal_owner = models.CharField(max_length=50)
+    legal_owner_details = models.TextField(blank=True)
+    microchip_number = models.CharField(max_length=50)
+    last_vaccination = models.CharField(max_length=100)
+    desexed = models.CharField(max_length=20)
+    is_wormed = models.BooleanField(default=True)
+    heartworm_preventative = models.BooleanField(default=False)
+
+    # 3. Compatibility
+    living_with_dogs = models.CharField(max_length=20)
+    dog_sizes_exposed = models.CharField(max_length=100)
+    dog_friendly = models.CharField(max_length=100)
+    cat_friendly = models.CharField(max_length=100)
+    living_with_children = models.CharField(max_length=20)
+    child_ages = models.CharField(max_length=100, blank=True)
+
+    # 4. Behavior & Lifestyle
+    living_arrangements = models.TextField()
+    toilet_trained = models.CharField(max_length=50)
+    behavioral_issues = models.TextField()
+    food_aggression = models.CharField(max_length=100)
+    fear_triggers = models.TextField()
+    commands = models.TextField()
+    meeting_strangers = models.TextField()
+    travel_well = models.CharField(max_length=100)
+    walks_well = models.CharField(max_length=100)
+
+    # 5. Environment & Diet
+    yard_type = models.CharField(max_length=100)
+    fencing_details = models.TextField()
+    current_diet = models.CharField(max_length=255)
+    diet_other_details = models.TextField(blank=True)
+
+    # 6. Personal Details (address/phone in BaseApplication)
+    contact_name = models.CharField(max_length=200) # Full name of person filling form
+    phone = models.CharField(max_length=20)
+    reason = models.TextField()
+    time_in_care = models.CharField(max_length=100)
+    urgency = models.CharField(max_length=100)
+    urgency_other_details = models.TextField(blank=True)
+    preference = models.TextField(verbose_name="Preference for new home")
+    blurb = models.CharField(max_length=200, blank=True)
+
+    class Meta:
+        verbose_name = "Surrender Application"
+        verbose_name_plural = "Surrender Applications"
+        ordering = ['-date_submitted']
+
+    def __str__(self):
+        return f"Surrender: {self.pet_name} ({self.contact_name})"
