@@ -19,48 +19,35 @@ def surrender_view(request):
     if request.method == 'POST':
         form = SurrenderForm(request.POST)
         if form.is_valid():
-            # 1. SAVE TO DATABASE (Do this first)
-            application = form.save()
-
-            # 2. EXTRACT DATA (Must happen before you use 'data')
-            data = form.cleaned_data
-
-            # 3. PREPARE EMAIL
-            subject = f"Surrender Inquiry: {data['pet_name']} - {data['first_name']} {data['last_name']}"
-
-            # Format email body
-            message_lines = [f"{field.replace('_', ' ').title()}: {value}" for field, value in data.items()]
-            message = "\n".join(message_lines)
-
-            try:
-                send_mail(
-                    subject,
-                    message,
-                    settings.DEFAULT_FROM_EMAIL,
-                    ['pawsamomentrescue@gmail.com'],
-                    reply_to=[data['email']],
-                    fail_silently=False,
-                )
-                return redirect('core:application_success')
-            except Exception as e:
-                print(f"Email error: {e}")
-                # Still redirect to success because the record IS saved to Admin
-                return redirect('core:application_success')
+            # 1. Save to the database
+            form.save()
+            
+            # 2. Add a success message for the user
+            messages.success(request, "Application submitted successfully! We will review it in our dashboard.")
+            
+            # 3. Redirect to the success page
+            return redirect('core:application_success')
         else:
-            # If form is invalid, print errors to console to see why
-            print("Form validation errors:")
-            print(form.errors)
-            print("\nForm data received:")
-            print(request.POST)
+            # If form has errors (like a missing field), it falls through to render the errors
+            messages.error(request, "There were errors in your form. Please check the red fields below.")
     else:
         form = SurrenderForm()
+    
+    return render(request, 'core/surrender.html', {'form': form})
 
     return render(request, 'core/surrender.html', {'form': form})
 
-# Keep these helpers as they were
 def contact_view(request):
-    # ... your existing contact_view code ...
-    pass
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Thank you! Your message has been saved.')
+            return redirect('core:contact')
+    else:
+        form = ContactForm()
+    return render(request, 'core/contact.html', {'form': form})
+    
 
 def adoption_policy(request):
     return render(request, 'core/adoptionpolicy.html')
