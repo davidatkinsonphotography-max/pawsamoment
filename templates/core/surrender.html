@@ -126,6 +126,26 @@
 
         <form method="post" class="app-form">
             {% csrf_token %}
+            
+            {% if form.errors %}
+            <div style="background: #ffebee; border: 2px solid #c62828; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                <h4 style="color: #c62828; margin-top: 0;">Please correct the following errors:</h4>
+                <ul style="color: #d32f2f;">
+                    {% for field in form %}
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+            {% endif %}
 
             <h3 class="section-header">1. The Basics</h3>
 

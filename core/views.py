@@ -48,7 +48,10 @@ def surrender_view(request):
                 return redirect('applications:application_success')
         else:
             # If form is invalid, print errors to console to see why
+            print("Form validation errors:")
             print(form.errors)
+            print("\nForm data received:")
+            print(request.POST)
     else:
         form = SurrenderForm()
 

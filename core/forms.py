@@ -30,7 +30,7 @@ class SurrenderForm(forms.ModelForm):
     legal_owner = forms.ChoiceField(label="Are you the legal owner?", choices=[('Yes','Yes'),('No','No'),('Other','Other')], widget=forms.RadioSelect)
     legal_owner_details = forms.CharField(label="Please provide details regarding ownership", widget=forms.Textarea(attrs={'rows': 2, 'placeholder': 'Please explain...'}), required=False)
     microchip_number = forms.CharField(label="Microchip Number", validators=[micro_val])
-    last_vaccination = forms.DateField(label="Date of last Vaccination", widget=forms.DateInput(attrs={'type': 'date'}))
+    last_vaccination = forms.DateField(label="Date of last Vaccination", widget=forms.DateInput(attrs={'type': 'date'}), required=False)
     desexed = forms.ChoiceField(label="Desexed?", choices=[('Yes','Yes'),('No','No'),('Unsure','Unsure')], widget=forms.RadioSelect)
 
     # --- Compatibility ---
